@@ -6,8 +6,16 @@
 - We will check you latest commit to grade it
 - Latest time you can commit is Friday, December 6, 11:59 PM PST
 ## Objective
-- TODO
+#### Overall
+- Write an entire robot in WPILib 2024, you will have to install any needed vendor libraries needed yourself, for example REVLib
+#### Specific
+- Swerve drive drivebase
+- Shooter
+- Intake
+- Hanger
 ## Hardware specifciations
+- TODO
+## Requirements
 - TODO
 ## Rubric
 - TODO
