@@ -1,10 +1,10 @@
 # FinalAssessment2024
 ## How to start
 - Clone the repo
-- Make a branch with the branch name as ```Firstname-L```(names should be capitalized, example:```Sepandar-F```) if your branch is incorrectly named or you make multiple you will lose points
+- Make a branch with the branch name as ```Firstname-Lastinitial```(names should be capitalized, example:```Sepandar-F```) if your branch is incorrectly named or you make multiple you will lose points
 - You can make as many commits and pushes as you want to your branch, when you are done make sure to push all of your code
 - We will check you latest commit to grade it
-- This is due Sunday as a result the latest time you can commit is Friday, December 13, 11:59 PM PST
+- This is due Sunday as a result the **latest time you can commit is Friday, December 13, 11:59 PM PST**
 ## Objective
 #### Overall
 - Write an entire robot in WPILib 2024, you will have to install any needed [vendor libraries](https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html) needed yourself, for example REV or CTRE(phoenix 6) libraries
