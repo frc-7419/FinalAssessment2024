@@ -1,7 +1,7 @@
 # FinalAssessment2024
 ## How to start
 - Clone the repo
-- Make a branch with the branch name as ```Firstname-Lastname```(names should be capitalized, example:``````) if your branch is incorrectly named or you make multiple you will lose points
+- Make a branch with the branch name as ```Firstname-L```(names should be capitalized, example:```Sepandar-F```) if your branch is incorrectly named or you make multiple you will lose points
 - You can make as many commits and pushes as you want to your branch, when you are done make sure to push all of your code
 - We will check you latest commit to grade it
 - This is due Friday as a result the latest time you can commit is Friday, December 6, 11:59 PM PST
@@ -15,6 +15,10 @@
 - Handoff
 - Hanger
 ## Hardware specifciations
+#### Put whatever you want for CAN IDs, but they must be unique and not zero and not over 50
+#### Robot
+- Width is 25 inches
+- Length is 25 inches
 #### Swerve
 - Eight motors
 - Four absolute encoders (CTRE CANCoder)
@@ -38,6 +42,7 @@
 - Controlled by a Kraken motor, negative values will spin the Kraken motor such that the hanger will move up
 - Hanger always magically start fully down
 ## Requirements
+#### Put whatever you want for CAN IDs, but they must be unique and not zero and not over 50
 #### Output some info about the robot to smartdashboard
 - Swerve module drive motor speed and wheel angle
 - Temperature for all motors
