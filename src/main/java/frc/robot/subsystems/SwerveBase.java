@@ -4,8 +4,6 @@
 
 package frc.robot.subsystems;
 
-import org.opencv.objdetect.GraphicalCodeDetector;
-
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.ctre.phoenix6.hardware.TalonFX;
 
