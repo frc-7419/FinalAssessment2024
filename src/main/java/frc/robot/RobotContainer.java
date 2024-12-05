@@ -46,6 +46,8 @@ public class RobotContainer {
 
   public RobotContainer() {
     configureBindings();
+    configureNamedCommands();
+    setDefaultCommand();
   }
 
   private void configureBindings() {}
@@ -57,5 +59,8 @@ public class RobotContainer {
     NamedCommands.registerCommand("RunShooter",runShooter);
     NamedCommands.registerCommand("RunHandoff",runHandoff);
     NamedCommands.registerCommand("RunIntake",runIntake);
+  }
+  private void setDefaultCommand(){
+    swerveBase.setDefaultCommand(runSwerveDrive);
   }
 }
