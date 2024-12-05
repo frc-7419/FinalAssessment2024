@@ -4,41 +4,40 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.subsystems.HandoffSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.HangerSubsystem;
 
-public class RunJoystickIntakeHandoff extends Command {
+public class RunJoystickHanger extends Command {
+  private final HangerSubsystem hangerSubsystem; 
   private final XboxController xboxController;
-  private final IntakeSubsystem intakeSubsystem;
-  private final HandoffSubsystem handoffSubsystem;
-  public RunJoystickIntakeHandoff(XboxController xboxController, IntakeSubsystem intakeSubsystem, HandoffSubsystem handoffSubsystem) {
+  public RunJoystickHanger(XboxController xboxController, HangerSubsystem hangerSubsystem) {
+    this.hangerSubsystem = hangerSubsystem;
     this.xboxController = xboxController;
-    this.intakeSubsystem = intakeSubsystem;
-    this.handoffSubsystem = handoffSubsystem;
-    addRequirements(intakeSubsystem, handoffSubsystem);
+    addRequirements(hangerSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intakeSubsystem.coast();
-    handoffSubsystem.coast();
+    hangerSubsystem.coast();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intakeSubsystem.setSpeed(xboxController.getRightY());
-    handoffSubsystem.setSpeed(xboxController.getRightY());
+    if (xboxController.getRightBumper()) {
+        hangerSubsystem.setSpeed(0.5);
+    }else if(xboxController.getLeftBumper()){
+        hangerSubsystem.setSpeed(-0.5);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intakeSubsystem.brake();
-    handoffSubsystem.brake();
+    hangerSubsystem.brake();
   }
 
   // Returns true when the command should end.
