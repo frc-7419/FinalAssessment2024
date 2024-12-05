@@ -4,13 +4,19 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.RunHandoff;
+import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunJoystickHanger;
 import frc.robot.commands.RunJoystickIntakeHandoff;
 import frc.robot.commands.RunJoystickShooter;
+import frc.robot.commands.RunShooter;
 import frc.robot.commands.RunSwerveDrive;
 import frc.robot.subsystems.HandoffSubsystem;
 import frc.robot.subsystems.HangerSubsystem;
@@ -31,6 +37,13 @@ public class RobotContainer {
   private final RunSwerveDrive runSwerveDrive = new RunSwerveDrive(swerveBase, driverController);
   private final RunJoystickIntakeHandoff runJoystickIntakeHandoff = new RunJoystickIntakeHandoff(operatorController, intake, handoff);
   private final RunJoystickHanger runJoystickHanger = new RunJoystickHanger(operatorController, hanger);
+
+  private final PathPlannerAuto twoNoteAuton = new PathPlannerAuto("twoNoteAuton");
+
+  private final RunHandoff runHandoff = new RunHandoff(handoff);
+  private final RunShooter runShooter = new RunShooter(shooter);
+  private final RunIntake runIntake = new RunIntake(intake);
+
   public RobotContainer() {
     configureBindings();
   }
@@ -38,6 +51,11 @@ public class RobotContainer {
   private void configureBindings() {}
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return twoNoteAuton;
+  }
+  private void configureNamedCommands(){
+    NamedCommands.registerCommand("RunShooter",runShooter);
+    NamedCommands.registerCommand("RunHandoff",runHandoff);
+    NamedCommands.registerCommand("RunIntake",runIntake);
   }
 }
