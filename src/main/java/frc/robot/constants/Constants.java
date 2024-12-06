@@ -53,6 +53,7 @@ public final class Constants {
          */
         public static final double kSpeedMotorGearRatio = 12.0 / 24.0 * 24.0 / 22.0 * 15.0 / 45.0;
         public static final double LENGTH = Units.inchesToMeters(25); 
+        public static final double WIDTH = Units.inchesToMeters(25); 
         public static final double HALF_LENGTH = LENGTH / 2.0; 
 
         public static final SwerveModuleConstants frontLeft = new SwerveModuleConstants(9, 10, 11, 98.35,

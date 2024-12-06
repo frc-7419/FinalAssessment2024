@@ -4,34 +4,23 @@
 
 package frc.robot.subsystems.drive;
 
-// import com.ctre.phoenix.sensors.AbsoluteSensorRange;
-// import com.ctre.phoenix.sensors.CANCoder;
-// import com.ctre.phoenix.sensors.SensorInitializationStrategy;
-
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.ctre.phoenix6.hardware.CANcoder;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.constants.Constants;
 
-/**
- * This is where the low-level logic for swerve is handled
- */
 public class SwerveModule {
-    private final CANSparkMax turnMotor;
-    private final CANSparkMax driveMotor;
-    // private final CANCoder turnEncoder;
-    private final RelativeEncoder driveEncoder;
+    private final TalonFX turnMotor;
+    private final TalonFX driveMotor;
+    private final CANcoder turnEncoder;
     private final PIDController angleController;
     private final String module;
 
     /**
-     * Makes a new swerve module, this handles one turn motor and one drive motor
-     *
      * @param turnMotorID       is a CAN ID parameter (int)
      * @param driveMotorID      is a CAN ID parameter (int)
      * @param turnEncoderID     is a CAN ID parameter (int)
@@ -45,36 +34,35 @@ public class SwerveModule {
         angleController.enableContinuousInput(0, 360);
         angleController.setTolerance(0.5);
 
-        turnMotor = new CANSparkMax(turnMotorID, MotorType.kBrushless);
-        turnMotor.setIdleMode(IdleMode.kCoast);
+        turnMotor = new TalonFX(turnMotorID);
 
-        driveMotor = new CANSparkMax(driveMotorID, MotorType.kBrushless);
-        driveMotor.setIdleMode(IdleMode.kCoast);
+        driveMotor = new TalonFX(driveMotorID);
 
-        driveEncoder = driveMotor.getEncoder();
-        driveEncoder.setPositionConversionFactor(1 / ((1 / Constants.SwerveConstants.kWheelCircumference) * 5.5));
+        turnEncoder = new CANcoder(turnEncoderID);
+
+        coast();
     }
 
     public void coast() {
-        turnMotor.setIdleMode(IdleMode.kCoast);
-        driveMotor.setIdleMode(IdleMode.kCoast);
+        turnMotor.setNeutralMode(NeutralModeValue.Coast);
+        driveMotor.setNeutralMode(NeutralModeValue.Coast);
     }
 
     public void brake() {
-        turnMotor.setIdleMode(IdleMode.kBrake);
-        driveMotor.setIdleMode(IdleMode.kBrake);
+        turnMotor.setNeutralMode(NeutralModeValue.Brake);
+        driveMotor.setNeutralMode(NeutralModeValue.Brake);
     }
 
     public double getDrivePosition() {
-        return driveEncoder.getPosition();
+        return turnEncoder.getPosition().getValue();
     }
 
     public void resetDriveEncoder() {
-        driveEncoder.setPosition(0);
+        turnEncoder.setPosition(0);
     }
 
     public boolean reachedDist(double meters) {
-        return Math.abs(driveEncoder.getPosition()) > meters;
+        return Math.abs(getDrivePosition()) > meters;
     }
 
     public void setSwerveModuleState(SwerveModuleState state) {
