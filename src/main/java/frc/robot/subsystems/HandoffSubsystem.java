@@ -6,17 +6,20 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HandoffSubsystem extends SubsystemBase {
-  private final TalonFX topMotor;
-  private final TalonFX bottomMotor;
+  private final CANSparkMax topMotor;
+  private final CANSparkMax bottomMotor;
   public HandoffSubsystem() {
-    topMotor = new TalonFX(8);
-    bottomMotor = new TalonFX(9);
+    topMotor = new CANSparkMax(8, MotorType.kBrushless);
+    bottomMotor = new CANSparkMax(9, MotorType.kBrushless);
     bottomMotor.setInverted(true);
     //make sure bottom motor is inverted
   }
@@ -25,17 +28,19 @@ public class HandoffSubsystem extends SubsystemBase {
     bottomMotor.set(speed);
   }
   public void brake(){
-    topMotor.setNeutralMode(NeutralModeValue.Brake);
-    bottomMotor.setNeutralMode(NeutralModeValue.Brake);
+    topMotor.setIdleMode(IdleMode.kBrake);
+    bottomMotor.setIdleMode(IdleMode.kBrake);
   }
   public void coast(){
-    topMotor.setNeutralMode(NeutralModeValue.Coast);
-    bottomMotor.setNeutralMode(NeutralModeValue.Coast);
+    topMotor.setIdleMode(IdleMode.kCoast);
+    bottomMotor.setIdleMode(IdleMode.kCoast);
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Top Handoff Motor Position", topMotor.getPosition().getValueAsDouble());
-    SmartDashboard.putNumber("Bottom Handoff Motor Position", bottomMotor.getPosition().getValueAsDouble());
+    SmartDashboard.putNumber("Top Handoff Motor Temp", topMotor.getMotorTemperature());
+    SmartDashboard.putNumber("Bottom Handoff Motor Temp", bottomMotor.getMotorTemperature());
+    SmartDashboard.putNumber("Top Handoff Motor Voltage", topMotor.getBusVoltage());
+    SmartDashboard.putNumber("Bottom Handoff Motor Voltage", bottomMotor.getBusVoltage());
   }
 }

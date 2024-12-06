@@ -6,32 +6,37 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
-  private final TalonFX leftMotor;
-  private final TalonFX rightMotor;
+  private final CANSparkMax leftMotor;
+  private final CANSparkMax rightMotor;
   public IntakeSubsystem() {
-    leftMotor = new TalonFX(10);
-    rightMotor = new TalonFX(11);
+    leftMotor = new CANSparkMax(10,MotorType.kBrushless);
+    rightMotor = new CANSparkMax(11, MotorType.kBrushless);
   }
   public void setSpeed(double speed){
     leftMotor.set(speed);
     rightMotor.set(speed);
   }
   public void brake(){
-    leftMotor.setNeutralMode(NeutralModeValue.Brake);
-    rightMotor.setNeutralMode(NeutralModeValue.Brake);
+    leftMotor.setIdleMode(IdleMode.kBrake);
+    rightMotor.setIdleMode(IdleMode.kBrake);
   }
   public void coast(){
-    leftMotor.setNeutralMode(NeutralModeValue.Coast);
-    rightMotor.setNeutralMode(NeutralModeValue.Coast);
+    leftMotor.setIdleMode(IdleMode.kCoast);
+    rightMotor.setIdleMode(IdleMode.kCoast);
   }
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Left Intake Motor Position", leftMotor.getPosition().getValueAsDouble());
-    SmartDashboard.putNumber("Right Intake Motor Position", rightMotor.getPosition().getValueAsDouble());
+    SmartDashboard.putNumber("Left Intake Motor Temp", leftMotor.getMotorTemperature());
+    SmartDashboard.putNumber("Right Intake Motor Temp", rightMotor.getMotorTemperature());
+    SmartDashboard.putNumber("Left Intake Motor Voltage", leftMotor.getBusVoltage());
+    SmartDashboard.putNumber("Right Intake Motor Voltage", rightMotor.getBusVoltage());
   }
 }
