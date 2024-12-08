@@ -7,8 +7,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Shooter {
-    private TalonFX shooterTopMotor = new TalonFX(3); // Replace with CAN ID
-    private TalonFX shooterBottomMotor = new TalonFX(4); // Replace with CAN ID
+    private final TalonFX shooterTopMotor = new TalonFX(3); // Replace with CAN ID
+    private final TalonFX shooterBottomMotor = new TalonFX(4); // Replace with CAN ID
+
+    private class ShooterInfo {
+        @SuppressWarnings("unused")
+        private double shooterVelocity=0.0;
+        @SuppressWarnings("unused")
+        private double shooterPosition=0.0;
+    }
 
     public void runShootersMotors(double power) {
         shooterTopMotor.set(power);
@@ -25,14 +32,23 @@ public class Shooter {
       shooterBottomMotor.setNeutralMode(NeutralModeValue.Brake);
     }
 
-    public double getShooterInfo() {
-        return  shooterBottomMotor.getPosition().getValueAsDouble(), 
-        shooterBottomMotor.getVelocity().getValueAsDouble(), 
-        shooterTopMotor.getPosition().getValueAsDouble(),
-        shooterTopMotor.getVelocity().getValueAsDouble();
+    public ShooterInfo getShooterTopMotorInfo() {
+        ShooterInfo top = new ShooterInfo();
+        top.shooterVelocity = shooterTopMotor.getVelocity().getValueAsDouble();
+        top.shooterPosition = shooterTopMotor.getPosition().getValueAsDouble();
+        return top;
     }
 
-    @Override
+    public ShooterInfo getShooterBottomMotorInfo() {
+        ShooterInfo bottom = new ShooterInfo();
+        bottom.shooterVelocity = shooterBottomMotor.getVelocity().getValueAsDouble();
+        bottom.shooterPosition = shooterBottomMotor.getPosition().getValueAsDouble();
+        return bottom;
+    }
+  
+
+
+    //@Override
     public void periodic() {
         SmartDashboard.putNumber("Shooter Bottom Motor Voltage", shooterBottomMotor.getMotorVoltage().getValue());
         SmartDashboard.putNumber("Shooter Bottom Position", shooterBottomMotor.getPosition().getValue());
