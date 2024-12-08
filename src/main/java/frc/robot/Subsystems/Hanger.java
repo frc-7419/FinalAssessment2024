@@ -1,14 +1,16 @@
 package frc.robot.Subsystems;
 
 import com.ctre.phoenix6.signals.NeutralModeValue;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Hanger {
-    private TalonSRX hangerMotor = new TalonSRX(5);
+public class Hanger extends SubsystemBase{
+    private final TalonSRX hangerMotor = new TalonSRX(5);
     
     public void runHangerMotors(double power) {
-        hangerMotor.set(power);
+        hangerMotor.set(ControlMode.PercentOutput, power);
     }
 
     public void coast() {
