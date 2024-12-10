@@ -6,13 +6,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.drive.DriveBaseSubsystem;
 
-public class SwerveDrive extends Command {
-    private XboxController joystick;
+public class RunDriveTrain extends Command {
+    private CommandXboxController joystick;
     private DriveBaseSubsystem driveBaseSubsystem;
 
-    public SwerveDrive(XboxController joystick, DriveBaseSubsystem driveBaseSubsystem) {
+    public RunDriveTrain(CommandXboxController joystick, DriveBaseSubsystem driveBaseSubsystem) {
         this.joystick = joystick;
         this.driveBaseSubsystem = driveBaseSubsystem;
         addRequirements(driveBaseSubsystem);
@@ -26,7 +27,8 @@ public class SwerveDrive extends Command {
 
     @Override
     public void execute() {
-        driveBaseSubsystem.setModuleStates(driveBaseSubsystem.getChassisSpeedsFromJoystick(joystick.getLeftY(), joystick.getLeftX(), joystick.getRightX(), joystick.getLeftBumper()));
+        driveBaseSubsystem.setModuleStates(driveBaseSubsystem.getChassisSpeedsFromJoystick(joystick.getLeftY(),
+                joystick.getLeftX(), joystick.getRightX(), false));
     }
 
     @Override

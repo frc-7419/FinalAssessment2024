@@ -22,17 +22,17 @@ public class IntakeSubsystem extends SubsystemBase {
     bottomMotor = new CANSparkMax(IntakeConstants.bottomIntakeID, MotorType.kBrushless);
   }
 
-  void coast() {
+  public void coast() {
     topMotor.setIdleMode(IdleMode.kCoast);
     bottomMotor.setIdleMode(IdleMode.kCoast);
   }
 
-  void brake() {
+  public void brake() {
     topMotor.setIdleMode(IdleMode.kBrake);
     bottomMotor.setIdleMode(IdleMode.kBrake);
   }
 
-  void setSpeed(double speed) {
+  public void setSpeed(double speed) {
     topMotor.set(speed);
     bottomMotor.set(speed);
   }

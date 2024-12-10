@@ -23,17 +23,17 @@ public class HandoffSubsystem extends SubsystemBase {
     bottomMotor.setInverted(true);
   }
 
-  void coast() {
+  public void coast() {
     topMotor.setIdleMode(IdleMode.kCoast);
     bottomMotor.setIdleMode(IdleMode.kCoast);
   }
 
-  void brake() {
+  public void brake() {
     topMotor.setIdleMode(IdleMode.kBrake);
     bottomMotor.setIdleMode(IdleMode.kBrake);
   }
 
-  void setSpeed(double speed) {
+  public void setSpeed(double speed) {
     topMotor.set(speed);
     bottomMotor.set(speed);
   }

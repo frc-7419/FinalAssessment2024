@@ -19,15 +19,15 @@ public class HangerSubsystem extends SubsystemBase {
     hangerMotor = new TalonFX(HangerConstants.motorOneID);
   }
 
-  void coast() {
+  public void coast() {
     hangerMotor.setNeutralMode(NeutralModeValue.Coast);
   }
 
-  void brake() {
+  public void brake() {
     hangerMotor.setNeutralMode(NeutralModeValue.Brake);
   }
 
-  void setSpeed(double speed) {
+  public void setSpeed(double speed) {
     hangerMotor.set(speed);
   }
 

@@ -21,17 +21,17 @@ public class ShooterSubsystem extends SubsystemBase {
     bottomMotor = new TalonFX(ShooterConstants.topShooterID);
   }
 
-  void coast() {
+  public void coast() {
     topMotor.setNeutralMode(NeutralModeValue.Coast);
     bottomMotor.setNeutralMode(NeutralModeValue.Coast);
   }
 
-  void brake() {
+  public void brake() {
     topMotor.setNeutralMode(NeutralModeValue.Brake);
     bottomMotor.setNeutralMode(NeutralModeValue.Brake);
   }
 
-  void setSpeed(double speed) {
+  public void setSpeed(double speed) {
     topMotor.set(speed);
     bottomMotor.set(speed);
   }
