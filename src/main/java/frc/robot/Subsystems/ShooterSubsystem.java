@@ -10,12 +10,12 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ShooterSubsytem extends SubsystemBase {
+public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsytem. */
   private final TalonFX shooterTopMotor;
   private final TalonFX shooterBottomMotor;
 
-  public ShooterSubsytem() {
+  public ShooterSubsystem() {
     shooterTopMotor = new TalonFX(0);
     shooterBottomMotor = new TalonFX(0);
 ;   shooterBottomMotor.setInverted(true);
@@ -36,8 +36,10 @@ public class ShooterSubsytem extends SubsystemBase {
     shooterBottomMotor.setNeutralMode(NeutralModeValue.Coast);
     shooterTopMotor.setNeutralMode(NeutralModeValue.Coast);
   }
-
-
+  public void setSpeed(double speed){
+    shooterTopMotor.set(speed);
+    shooterBottomMotor.set(speed);
+  }
   @Override
   public void periodic() {
     
