@@ -8,21 +8,30 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SwerveSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */
-  private TalonFX backRight;
-  private TalonFX backLeft;
-  private TalonFX frontRight;
-  private TalonFX frontLeft;
+  private SwerveModule backRight;
+  private SwerveModule backLeft;
+  private SwerveModule frontRight;
+  private SwerveModule frontLeft; TalonFx
   private Pigeon2 gyro;
   public SwerveSubsystem() {
-    backRight = new TalonFX(TalonFX(1), TalonFX(2));
-    backLeft = new TalonFX(TalonFX(3), TalonFX(4));
-    frontRight = new TalonFX(TalonFX(5), TalonFX(6));
-    frontLeft = new TalonFX(TalonFX(7), TalonFX(8));
-    gyro = new Pigeon2()
+    backRight = new SwerveModule(TalonFX(1), TalonFX(2));
+    backLeft = new SwerveModule(TalonFX(3), TalonFX(4));
+    frontRight = new SwerveModule(TalonFX(5), TalonFX(6));
+    frontLeft = new SwerveModule(TalonFX(7), TalonFX(8));
+    gyro = new Pigeon2();
   }
 
-  public void coastSwerve(){
-
+  public void coast(){
+    backRight.coast();
+    backLeft.coast();
+    frontRight.coast();
+    frontLeft.coast();
+  }
+  public void brake(){
+    backRight.brake();
+    backLeft.brake();
+    frontRight.brake();
+    frontLeft.brake();
   }
 
 

@@ -18,10 +18,15 @@ public class SwerveModule extends SubsystemBase {
     this.moveMotor = MoveMotor;
     encoder = new CANcoder(10);
     anglePID = new PIDController(0,0,0);
+
   }
   public void coast(){
     turnMotor.setNeutralMode(NeutralModeValue.coast);
     moveMotor.setNeutralMode(NeutralModeValue.coast);
+  }
+  public void brake(){
+    turnMotor.setNeutralMode(NeutralModeValue.brake);
+    moveMotor.setNeutralMode(NeutralModeValue.brake);
   }
 
   @Override

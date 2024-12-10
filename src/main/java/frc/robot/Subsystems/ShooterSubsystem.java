@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsystem. */
-  private final TalonFX
+  private final TalonFX topMotor;
   private final TalonFX bottomMotor;
 
   public ShooterSubsystem() {
