@@ -42,5 +42,7 @@ public class IntakeSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("TopIntakeSpeed", topMotor.get());
     SmartDashboard.putNumber("BottomIntakeSpeed", bottomMotor.get());
+    SmartDashboard.putNumber("TopIntakeTemperature", topMotor.getMotorTemperature());
+    SmartDashboard.putNumber("BottomIntakeTemperature", bottomMotor.getMotorTemperature());
   }
 }

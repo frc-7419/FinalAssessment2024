@@ -41,7 +41,9 @@ public class HandoffSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("TopIntakeSpeed", topMotor.get());
-    SmartDashboard.putNumber("BottomIntakeSpeed", bottomMotor.get());
+    SmartDashboard.putNumber("TopHandoffSpeed", topMotor.get());
+    SmartDashboard.putNumber("BottomHandoffSpeed", bottomMotor.get());
+    SmartDashboard.putNumber("TopHandoffTemperature", topMotor.getMotorTemperature());
+    SmartDashboard.putNumber("BottomHandoffTemperature", bottomMotor.getMotorTemperature());
   }
 }
