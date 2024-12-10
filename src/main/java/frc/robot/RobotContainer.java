@@ -8,11 +8,17 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.SwerveDrive;
 import frc.robot.constants.Constants;
+import frc.robot.subsystems.drive.DriveBaseSubsystem;
 
 public class RobotContainer {
   private final XboxController driver = new XboxController(Constants.ControllerConstants.kDriveControllerPort);
-    private final CommandXboxController operator = new CommandXboxController(Constants.ControllerConstants.kOperatorControllerPort);
+  private final CommandXboxController operator = new CommandXboxController(Constants.ControllerConstants.kOperatorControllerPort);
+
+  private final DriveBaseSubsystem drivetrain = new DriveBaseSubsystem();
+
+  private final SwerveDrive swerveDrive = new SwerveDrive(driver, drivetrain);
 
   public RobotContainer() {
     configureBindings();
@@ -20,6 +26,8 @@ public class RobotContainer {
 
   private void configureBindings() {
     
+    
+
   }
 
   public Command getAutonomousCommand() {
