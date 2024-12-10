@@ -42,6 +42,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
   @Override
   public void periodic() {
-    
+    SmartDashboard.putNumber("Shooter Top Motor Position: ", shooterTopMotor.getPosition().getValueAsDouble());
+    SmartDashboard.putNumber("Shooter Bottom Motor Position: ", shooterBottomMotor.getPosition().getValueAsDouble());
   }
 }
