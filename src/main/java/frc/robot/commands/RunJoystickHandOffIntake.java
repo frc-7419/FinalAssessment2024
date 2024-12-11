@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.HandOffSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
-public class RunJoystickIntakeHandoff extends Command {
+public class RunJoystickHandOffIntake extends Command {
   private final XboxController xboxController;
   private final IntakeSubsystem intakeSubsystem;
   private final HandOffSubsystem handOffSubsystem;
-  public RunJoystickIntakeHandoff(XboxController xboxController, IntakeSubsystem intakeSubsystem, HandOffSubsystem handOffSubsystem) {
+  public RunJoystickHandOffIntake(XboxController xboxController, IntakeSubsystem intakeSubsystem, HandOffSubsystem handOffSubsystem) {
     this.xboxController = xboxController;
     this.intakeSubsystem = intakeSubsystem;
     this.handOffSubsystem = handOffSubsystem;

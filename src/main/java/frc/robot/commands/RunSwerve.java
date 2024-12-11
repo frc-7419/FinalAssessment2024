@@ -4,39 +4,35 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.HangerSubsystem;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.SwerveBase;
 
-public class RunJoystickHanger extends Command {
-  private final HangerSubsystem hangerSubsystem; 
-  private final XboxController xboxController;
-  public RunJoystickHanger(XboxController xboxController, HangerSubsystem hangerSubsystem) {
-    this.hangerSubsystem = hangerSubsystem;
+public class RunSwerve extends Command {
+  private final SwerveBase swerveBase;
+  private final CommandXboxController xboxController;
+  public RunSwerve(SwerveBase swerveBase, CommandXboxController xboxController) {
+    this.swerveBase = swerveBase;
     this.xboxController = xboxController;
-    addRequirements(hangerSubsystem);
+    addRequirements(swerveBase);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    hangerSubsystem.coast();
+    swerveBase.coast();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (xboxController.getRightBumper()) {
-        hangerSubsystem.setPower(1);
-    } else if(xboxController.getLeftBumper()){
-        hangerSubsystem.setPower(-1);
-    }
+    swerveBase.setSwerve(xboxController.getLeftX(), xboxController.getLeftY(), xboxController.getRightX());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    hangerSubsystem.brake();
+    swerveBase.brake();
   }
 
   // Returns true when the command should end.

@@ -19,14 +19,15 @@ public class SwerveBase extends SubsystemBase {
   private final SwerveModule frontLeft;
   private final SwerveModule frontRight;
   private final Pigeon2 gyroscope;
+  
   public SwerveBase() {
-    backLeft = new SwerveModule(new TalonFX(4), new TalonFX(5));
-    backRight = new SwerveModule(new TalonFX(6), new TalonFX(7));
-     frontLeft = new SwerveModule(new TalonFX(8), new TalonFX(1));
-    frontRight = new SwerveModule(new TalonFX(2), new TalonFX(3));
+    backLeft = new SwerveModule(new TalonFX(1), new TalonFX(2));
+    backRight = new SwerveModule(new TalonFX(3), new TalonFX(4));
+    frontLeft = new SwerveModule(new TalonFX(5), new TalonFX(7));
+    frontRight = new SwerveModule(new TalonFX(7), new TalonFX(8));
     gyroscope = new Pigeon2(0);  
   }
-  public void setSwerveWithJoystick(double vx, double vy, double rx){
+  public void setSwerve(double vx, double vy, double rx){
     setChassisSpeed(ChassisSpeeds.fromFieldRelativeSpeeds(vx,vy,rx,gyroscope.getRotation2d()));
   }
   public void setChassisSpeed(ChassisSpeeds chassisSpeeds) {
