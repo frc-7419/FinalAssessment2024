@@ -27,5 +27,7 @@ public class HangerSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Hanger Motor Position", hangerMotor.getPosition().getValueAsDouble());
+    SmartDashboard.putNumber("Hanger Motor Temperature", hangerMotor.getDeviceTemp().getValueAsDouble());
+    
   }
 }

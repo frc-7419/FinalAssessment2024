@@ -32,5 +32,8 @@ public class ShooterSubsystem extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Shooter Top Motor Position", topMotor.getPosition().getValueAsDouble());
     SmartDashboard.putNumber("Shooter Bottom Motor Position", bottomMotor.getPosition().getValueAsDouble());
+
+    SmartDashboard.putNumber("Shooter Top Motor Temperature", topMotor.getDeviceTemp().getValueAsDouble());
+    SmartDashboard.putNumber("Shooter Bottom Motor Temperature", bottomMotor.getDeviceTemp().getValueAsDouble());
   }
 }

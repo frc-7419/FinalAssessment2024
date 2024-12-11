@@ -12,6 +12,8 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class SwerveModule extends SubsystemBase {
   private final TalonFX turnMotor;
   private final TalonFX moveMotor;
@@ -52,5 +54,8 @@ public class SwerveModule extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Turn Motor Temperature", turnMotor.getDeviceTemp().getValueAsDouble());
+    SmartDashboard.putNumber("Move Motor Temperature", moveMotor.getDeviceTemp().getValueAsDouble());
+
   }
 }

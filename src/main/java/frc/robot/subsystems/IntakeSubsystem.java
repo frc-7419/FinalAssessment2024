@@ -4,33 +4,38 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
-  private final TalonFX leftMotor;
-  private final TalonFX rightMotor;
+  private final CANSparkMax leftMotor;
+  private final CANSparkMax rightMotor;
   public IntakeSubsystem() {
-    leftMotor = new TalonFX(1);
-    rightMotor = new TalonFX(2);
+    leftMotor = new CANSparkMax(1, MotorType.kBrushless);
+    rightMotor = new CANSparkMax(2, MotorType.kBrushless);
   }
   public void setPower(double power){
     leftMotor.set(power);
     rightMotor.set(power);
   }
   public void brake(){
-    leftMotor.setNeutralMode(NeutralModeValue.Brake);
-    rightMotor.setNeutralMode(NeutralModeValue.Brake);
+    leftMotor.setIdleMode(IdleMode.kBrake);
+    rightMotor.setIdleMode(IdleMode.kBrake);
   }
   public void coast(){
-    leftMotor.setNeutralMode(NeutralModeValue.Coast);
-    rightMotor.setNeutralMode(NeutralModeValue.Coast);
+    leftMotor.setIdleMode(IdleMode.kCoast);
+    rightMotor.setIdleMode(IdleMode.kCoast);
   }
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Intake Right Motor Position", rightMotor.getPosition().getValueAsDouble());
-    SmartDashboard.putNumber("Intake Left Motor Position", leftMotor.getPosition().getValueAsDouble());
+    SmartDashboard.putNumber("Intake Right Motor Position", rightMotor.getAbsoluteEncoder().getPosition());
+    SmartDashboard.putNumber("Intake Left Motor Position", leftMotor.getAbsoluteEncoder().getPosition());
+
+    SmartDashboard.putNumber("Intake Right Motor Temperature", rightMotor.getMotorTemperature());
+    SmartDashboard.putNumber("Intake Left Motor Temperature", leftMotor.getMotorTemperature());
   }
 }
