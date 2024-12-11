@@ -6,7 +6,7 @@ import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Handoff extends SubsystemBase{
+public class HandoffSubsystem extends SubsystemBase{
     private final CANSparkMax handoffMotorOne = new CANSparkMax(6, CANSparkLowLevel.MotorType.kBrushless);
     private final CANSparkMax handoffMotorTwo = new CANSparkMax(7, CANSparkLowLevel.MotorType.kBrushless);
 

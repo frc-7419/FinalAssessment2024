@@ -1,12 +1,12 @@
-package frc.robot.Subsystems;
+package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
-
-public class Shooter {
+public class ShooterSubsystem extends SubsystemBase{
     private final TalonFX shooterTopMotor = new TalonFX(3); // Replace with CAN ID
     private final TalonFX shooterBottomMotor = new TalonFX(4); // Replace with CAN ID
 
@@ -46,9 +46,7 @@ public class Shooter {
         return bottom;
     }
   
-
-
-    //@Override
+    @ Override
     public void periodic() {
         SmartDashboard.putNumber("Shooter Bottom Motor Voltage", shooterBottomMotor.getMotorVoltage().getValue());
         SmartDashboard.putNumber("Shooter Bottom Position", shooterBottomMotor.getPosition().getValue());
