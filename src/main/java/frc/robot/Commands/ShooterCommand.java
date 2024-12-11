@@ -4,45 +4,43 @@
 
 package frc.robot.Commands;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Subsystems.ShooterSubsystem;
 
 public class ShooterCommand extends Command {
   /** Creates a new ShooterCommand. */
-  ShooterSubsystem shooterSubsystem;
-  XboxController xboxController;
-  public ShooterCommand() {
-    xboxController = new XboxController(0);
+  private ShooterSubsystem shooterSubsystem;
+  private XboxController opController;
+  public ShooterCommand(XboxController OpController, ShooterSubsystem ShooterSubsytem) {
+    this.opController = OpController;
+    this.shooterSubsystem = ShooterSubsytem;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooterSubsystem.coastShooter()
+    shooterSubsystem.coast();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (xboxController.getAButtonPressed()){
-      shooterSubsystem.runShooter(-0.50);
-    }
-    else{
-      shooterSubsystem.stopShooter()
-    }
+    shooterSubsystem.run(opController.getLeftY());
 
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooterSubsystem.stopShooter()
+    shooterSubsystem.brake();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    shooterSubsystem.stopShooter()
+    shooterSubsystem.brake();
 
     return false;
   }

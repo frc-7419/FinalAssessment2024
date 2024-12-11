@@ -3,7 +3,13 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.Subsystems;
+import com.ctre.phoenix6.hardware.Pigeon2;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
+
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SwerveSubsystem extends SubsystemBase {
@@ -11,14 +17,14 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveModule backRight;
   private SwerveModule backLeft;
   private SwerveModule frontRight;
-  private SwerveModule frontLeft; TalonFx
+  private SwerveModule frontLeft;
   private Pigeon2 gyro;
   public SwerveSubsystem() {
-    backRight = new SwerveModule(TalonFX(1), TalonFX(2));
-    backLeft = new SwerveModule(TalonFX(3), TalonFX(4));
-    frontRight = new SwerveModule(TalonFX(5), TalonFX(6));
-    frontLeft = new SwerveModule(TalonFX(7), TalonFX(8));
-    gyro = new Pigeon2();
+    this.backRight = new SwerveModule(new TalonFX(7), new TalonFX(11));
+    this.backLeft = new SwerveModule(new TalonFX(8), new TalonFX(12));
+    this.frontRight = new SwerveModule(new TalonFX(9),new  TalonFX(13));
+    this.frontLeft = new SwerveModule(new TalonFX(10), new TalonFX(14));
+    this.gyro = new Pigeon2(0);
   }
 
   public void coast(){
@@ -32,6 +38,21 @@ public class SwerveSubsystem extends SubsystemBase {
     backLeft.brake();
     frontRight.brake();
     frontLeft.brake();
+  }
+  public void setSwerveModuleState(SwerveModuleState[] states){
+      backRight.setSwerveModuleState(states[0]);
+      backLeft.setSwerveModuleState(states[1]);
+      frontRight.setSwerveModuleState(states[2]);
+      frontLeft.setSwerveModuleState(states[3]);
+  }
+
+  public void setJoystick(double x, double y, double rx){
+      setChassisSpeed(ChassisSpeeds.fromFieldRelativeSpeeds(x,y,rx,gyro.getRotation2d()));
+
+  }
+  
+  public void setChassisSpeed(ChassisSpeeds chassisSpeeds) {
+    setSwerveModuleState(new SwerveDriveKinematics().toSwerveModuleStates(chassisSpeeds));
   }
 
 

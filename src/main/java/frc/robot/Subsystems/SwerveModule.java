@@ -3,7 +3,12 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.Subsystems;
+import com.ctre.phoenix6.hardware.CANcoder;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SwerveModule extends SubsystemBase {
@@ -11,23 +16,31 @@ public class SwerveModule extends SubsystemBase {
   private final TalonFX turnMotor;
   private final TalonFX moveMotor;
   private final PIDController anglePID;
-  private final Cancoder cancoder;
+  private final CANcoder cancoder;
 
-  public SwerveModule(TalonFX TurnMotor, TalonFx MoveMotor) {
+  public SwerveModule(TalonFX TurnMotor, TalonFX MoveMotor) {
     this.turnMotor = TurnMotor;
     this.moveMotor = MoveMotor;
-    encoder = new CANcoder(10);
-    anglePID = new PIDController(0,0,0);
+    this.cancoder = new CANcoder(10);
+    this.anglePID = new PIDController(0,0,0);
 
   }
   public void coast(){
-    turnMotor.setNeutralMode(NeutralModeValue.coast);
-    moveMotor.setNeutralMode(NeutralModeValue.coast);
+    turnMotor.setNeutralMode(NeutralModeValue.Coast);
+    moveMotor.setNeutralMode(NeutralModeValue.Coast);
   }
   public void brake(){
-    turnMotor.setNeutralMode(NeutralModeValue.brake);
-    moveMotor.setNeutralMode(NeutralModeValue.brake);
+    turnMotor.setNeutralMode(NeutralModeValue.Brake);
+    moveMotor.setNeutralMode(NeutralModeValue.Brake);
   }
+  public double getPos(){
+    return cancoder.getPosition().getValueAsDouble();
+  }
+  public void setSwerveModuleState(SwerveModuleState state){
+      moveMotor.set(state.speedMetersPerSecond);
+      turnMotor.set(anglePID.calculate(getPos(), state.angle.getDegrees()));
+  }
+
 
   @Override
   public void periodic() {
