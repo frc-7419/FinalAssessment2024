@@ -4,37 +4,43 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.subsystems.ShooterSubsytem;
+import frc.robot.subsystems.HandoffSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
-public class ShootNote extends Command {
-  /** Creates a new ShootNote. */
-  private final ShooterSubsytem shooter;
-  private final CommandXboxController controller;
-  public ShootNote(ShooterSubsytem shooter, CommandXboxController controller) {
+public class RunIntakeHandoff extends Command {
+  /** Creates a new RunIntakeHandoff. */
+  private final IntakeSubsystem intake;
+  private final HandoffSubsystem handoff;
+  private final XboxController controller;
+  public RunIntakeHandoff(IntakeSubsystem intake, HandoffSubsystem handoff, XboxController controller) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.shooter = shooter;
+    this.intake = intake;
+    this.handoff = handoff;
     this.controller = controller;
-    addRequirements(shooter);
+    addRequirements(intake, handoff);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.coast();
+    intake.coast();
+    handoff.coast();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.setPower(controller.getLeftY()); 
+    intake.setPower(controller.getRightY());
+    handoff.setPower(controller.getRightY());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.brake();
+    intake.brake();
+    handoff.brake();
   }
 
   // Returns true when the command should end.
