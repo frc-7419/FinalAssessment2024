@@ -5,7 +5,13 @@
 package frc.robot.subsystems.drive;
 
 /** Add your docs here. */
+
+
 public class SwerveModule {
+
+    public SwerveModule(int turnEncoderId, int driveEncoderId, int turnMotorId, int driveMotorID) {
+
+    }
 
 
 

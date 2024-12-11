@@ -4,12 +4,19 @@
 
 package frc;
 
-import edu.wpi.first.units.Units;
-
 /** Add your docs here. */
 public class Constants {
-    public double robotLength = 25;
-    public double robotWidth = 25;
+    public static double robotLength = 25;
+    public static double robotWidth = 25;
+    public static int driveJoystickPort = 1;
+    public static int operatorJoystickPort = 1;
+
+    public static class wristConstants{
+        public final static int encoderPort = 5;
+        public static double encoderOffset= 40.0/360;
+        
+
+    }
 
     public static class canIDConstants{
         public final static int shooterTopMotorID = 8;

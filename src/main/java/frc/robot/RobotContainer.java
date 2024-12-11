@@ -7,15 +7,22 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.Constants;
+import frc.robot.subsystems.wrist.SetWristToSetpoint;
+import frc.robot.subsystems.wrist.WristSubsystem;
 
 public class RobotContainer {
-  public CommandXboxController driverJoystick;
-  public CommandXboxController operatorJoystick;
+  private CommandXboxController driverJoystick = new CommandXboxController(Constants.driveJoystickPort);
+  private CommandXboxController operatorJoystick = new CommandXboxController(Constants.operatorJoystickPort);
+  private WristSubsystem wristSubsystem = new WristSubsystem();
+
   public RobotContainer() {
     configureBindings();
   }
 
-  private void configureBindings() {}
+  private void configureBindings() {
+    operatorJoystick.a().whileTrue(new SetWristToSetpoint(wristSubsystem));
+  }
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
