@@ -14,7 +14,7 @@ public class RunShooterJoystick extends Command {
   private final ShooterSubsystem shooterSubsystem;
   public RunShooterJoystick(XboxController xboxController, ShooterSubsystem shooterSubsystem) {
     this.xboxController = xboxController;
-    this.ShooterSubsystem = shooterSubsystem;
+    this.shooterSubsystem = shooterSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
