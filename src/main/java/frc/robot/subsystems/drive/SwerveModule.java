@@ -57,29 +57,15 @@ public class SwerveModule {
         return turnEncoder.getPosition().getValue();
     }
 
-    public void resetDriveEncoder() {
-        turnEncoder.setPosition(0);
-    }
-
-    public boolean reachedDist(double meters) {
-        return Math.abs(getDrivePosition()) > meters;
-    }
-
     public void setSwerveModuleState(SwerveModuleState state) {
         driveMotor.set(state.speedMetersPerSecond);
     }
 
-    /**
-     * Stops all motors in the module
-     */
     public void stop() {
         driveMotor.set(0);
         turnMotor.set(0);
     }
 
-    /**
-     * Outputs values to dashboard
-     */
     public void outputDashboard() {
         SmartDashboard.putNumber(module + " driveSpeed", driveMotor.get());
         SmartDashboard.putNumber(module + " driveEncoder", getDrivePosition());

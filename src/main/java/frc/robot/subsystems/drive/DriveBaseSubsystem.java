@@ -41,8 +41,8 @@ public class DriveBaseSubsystem extends SubsystemBase {
     gyro.reset();
   }
 
-  public double getYaw() { // CW IS POSITIVE BY DEFAULT
-    return -gyro.getAngle();
+  public double getYaw() { 
+    return gyro.getAngle();
   }
 
   public double getPitch() {
@@ -51,20 +51,6 @@ public class DriveBaseSubsystem extends SubsystemBase {
 
   public double getRoll() {
     return gyro.getRoll().getValue();
-  }
-
-  public boolean reachedDist(double meters) {
-    return (frontLeftModule.reachedDist(meters)) &&
-        (frontRightModule.reachedDist(meters)) &&
-        (backLeftModule.reachedDist(meters)) &&
-        (backRightModule.reachedDist(meters));
-  }
-
-  public void resetDriveEnc() {
-    frontLeftModule.resetDriveEncoder();
-    frontRightModule.resetDriveEncoder();
-    backLeftModule.resetDriveEncoder();
-    backRightModule.resetDriveEncoder();
   }
 
   public Rotation2d getRotation2d() {
@@ -92,31 +78,10 @@ public class DriveBaseSubsystem extends SubsystemBase {
     backRightModule.stop();
   }
 
-  /**
-   * Returns chassis speeds from field-centric joystick controls. This is what
-   * determines the translational speed of the robot in proportion to joystick
-   * values.
-   *
-   * @param joystick
-   * @return
-   */
-  public ChassisSpeeds getChassisSpeedsFromJoystick(double vx, double vy, double rx, boolean slowMode) {
-    vx = Math.abs(vx) > 0.05 ? -vx * SwerveConstants.kMaxTranslationalSpeed : 0;
-    vy = Math.abs(vy) > 0.05 ? vy * SwerveConstants.kMaxTranslationalSpeed : 0;
-    rx = Math.abs(rx) > 0.05 ? -0.7 * rx * SwerveConstants.kMaxRotationalSpeed : 0;
-    if (slowMode) {
-      vx *= 0.2;
-      vy *= 0.2;
-      rx *= 0.2;
-    }
+  public ChassisSpeeds getChassisSpeeds(double vx, double vy, double rx) {
     return ChassisSpeeds.fromFieldRelativeSpeeds(vx, vy, rx, getRotation2d());
   }
 
-  /**
-   * Sets the individual swerve module states
-   *
-   * @param moduleStates
-   */
   public void setModuleStates(SwerveModuleState[] moduleStates) {
     frontLeftModule.setSwerveModuleState(moduleStates[0]);
     frontRightModule.setSwerveModuleState(moduleStates[1]);
@@ -124,11 +89,6 @@ public class DriveBaseSubsystem extends SubsystemBase {
     backRightModule.setSwerveModuleState(moduleStates[3]);
   }
 
-  /**
-   * Sets the individual swerve module states from chassis speed
-   *
-   * @param moduleStates
-   */
   public void setModuleStates(ChassisSpeeds chassisSpeeds) {
     setModuleStates(SwerveConstants.m_SwerveDriveKinematics.toSwerveModuleStates(chassisSpeeds));
   }

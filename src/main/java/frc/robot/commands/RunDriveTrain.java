@@ -27,8 +27,8 @@ public class RunDriveTrain extends Command {
 
     @Override
     public void execute() {
-        driveBaseSubsystem.setModuleStates(driveBaseSubsystem.getChassisSpeedsFromJoystick(joystick.getLeftY(),
-                joystick.getLeftX(), joystick.getRightX(), false));
+        driveBaseSubsystem.setModuleStates(driveBaseSubsystem.getChassisSpeeds(joystick.getLeftY(),
+                joystick.getLeftX(), joystick.getRightX()));
     }
 
     @Override

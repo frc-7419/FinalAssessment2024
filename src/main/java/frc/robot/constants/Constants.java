@@ -37,21 +37,6 @@ public final class Constants {
     }
 
     public static class SwerveConstants {
-        /*
-         * ANGLE MOTOR
-         * NEO Shaft to 12T Pulley to 24T Pulley to 14T Gear to 72T Main Rotation Gear
-         */
-        public static final double kGearRatioAngleMotor = 12.0 / 24.0 * 14.0 / 72.0;
-        /*
-         * DRIVE MOTOR
-         * NEO shaft to 12T Pulley to 24T Pulley to 24T Gear to 22T Gear to 15T bevel to
-         * 45T Bevel
-         *
-         * The CANCODER measures rotations of a the driven 1:1 PULLEY in which the
-         * driver pulley is on the same
-         * shaft as the 24T Pulley
-         */
-        public static final double kSpeedMotorGearRatio = 12.0 / 24.0 * 24.0 / 22.0 * 15.0 / 45.0;
         public static final double LENGTH = Units.inchesToMeters(25); 
         public static final double WIDTH = Units.inchesToMeters(25); 
         public static final double HALF_LENGTH = LENGTH / 2.0; 
@@ -67,10 +52,7 @@ public final class Constants {
         public static final SwerveDriveKinematics m_SwerveDriveKinematics = new SwerveDriveKinematics(
                 SwerveConstants.frontLeft.location, SwerveConstants.frontRight.location, SwerveConstants.backLeft.location,
                 SwerveConstants.backRight.location);
-        public static final double kMaxTranslationalSpeed = Units.feetToMeters(3);
-        public static final double kMaxRotationalSpeed = Math.PI / 4;
-        public static final double kWheelDiameter = Units.inchesToMeters(3.5);
-        public static final double kWheelCircumference = kWheelDiameter * Math.PI;
+                
         public static final double anglekP = 0;
         public static final double anglekI = 0;
         public static final double anglekD = 0;
