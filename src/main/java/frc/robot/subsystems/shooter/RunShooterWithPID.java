@@ -4,6 +4,9 @@
 
 package frc.robot.subsystems.shooter;
 
+import java.util.function.ToDoubleBiFunction;
+import java.util.function.ToDoubleFunction;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -12,29 +15,37 @@ public class RunShooterWithPID extends Command {
   private ShooterSubsystem shooterSubsystem;
   private PIDController shooterPidController = new PIDController(12, 0, 0.25);
 
-  public RunShooterWithPID(ShooterSubsystem shooterSubsystem, double rpm) {
+  public RunShooterWithPID(ShooterSubsystem shooterSubsystem, double targetRpm) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.shooterSubsystem = shooterSubsystem;
-    shooterPidController.setSetpoint(rpm);
+    shooterPidController.setSetpoint(targetRpm);
     shooterPidController.setTolerance(50);
     addRequirements(shooterSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    shooterSubsystem.coast();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    double pidPower = shooterPidController.calculate(shooterSubsystem.getRpm());
+    shooterSubsystem.setVoltage(pidPower);
+
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    shooterSubsystem.setVoltage(0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return shooterPidController.atSetpoint();
   }
 }
