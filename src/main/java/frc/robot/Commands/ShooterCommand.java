@@ -1,15 +1,15 @@
-package frc.robot.commands;
+package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.Subsystems.ShooterSubsystem;
 
 public class ShooterCommand extends Command{
     private final ShooterSubsystem shooterSubsystem;
     private final XboxController ctrl;
     private double lastSetSpeed = 0;
 
-    public ShooterUsingJoystick(XboxController xboxController, ShooterSubsystem shooterSubsystem) {
+    public void ShooterUsingJoystick(XboxController xboxController, ShooterSubsystem shooterSubsystem) {
         this.shooter = shooterSubsystem;
         this.ctrl = xboxController;
         addRequirements(shooterSubsystem);
