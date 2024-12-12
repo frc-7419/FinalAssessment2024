@@ -9,6 +9,7 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SwerveModule extends SubsystemBase {
@@ -39,11 +40,13 @@ public class SwerveModule extends SubsystemBase {
   public void setSwerveModuleState(SwerveModuleState state){
       moveMotor.set(state.speedMetersPerSecond);
       turnMotor.set(anglePID.calculate(getPos(), state.angle.getDegrees()));
+
   }
 
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Motor Angle: ", getPos());
     // This method will be called once per scheduler run
   }
 }

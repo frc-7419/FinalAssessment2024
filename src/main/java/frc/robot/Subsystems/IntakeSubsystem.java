@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
-  /** Creates a new IntakeSubsystem. */
+  /** Functions: Coast, Brake, Run */
   private final CANSparkMax motor1;
   private final CANSparkMax motor2;  
   public IntakeSubsystem() {
@@ -20,23 +20,25 @@ public class IntakeSubsystem extends SubsystemBase {
     motor2 = new CANSparkMax(4,MotorType.kBrushless);
 
   }
+
+  /**Coasts the two intake motors */
   public void coast(){
     motor1.setIdleMode(IdleMode.kCoast);
     motor2.setIdleMode(IdleMode.kCoast);
   }
+
+  /**Brakes the two intake motors */
   public void brake(){
     motor1.setIdleMode(IdleMode.kBrake);
     motor2.setIdleMode(IdleMode.kBrake);  
   }
-
+  
   public void run(double power){
     motor1.set(power);
     motor2.set(power);
   }
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Shooter: Top Motor Voltage", motor1.getBusVoltage());
-    SmartDashboard.putNumber("Shooter: Bottom Motor Voltage", motor2.getBusVoltage());
     SmartDashboard.putNumber("Shooter: Top Motor Temp", motor1.getMotorTemperature());
     SmartDashboard.putNumber("Shooter: Bottom Motor Temp", motor2.getMotorTemperature());
     // This method will be called once per scheduler run
