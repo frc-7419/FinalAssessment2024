@@ -4,13 +4,20 @@
 
 package frc.robot.subsystems.shooter;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class RunShooterWithPID extends Command {
   /** Creates a new RunShooterWithPID. */
-  public RunShooterWithPID() {
+  private ShooterSubsystem shooterSubsystem;
+  private PIDController shooterPidController = new PIDController(12, 0, 0.25);
+
+  public RunShooterWithPID(ShooterSubsystem shooterSubsystem, double rpm) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(null);
+    this.shooterSubsystem = shooterSubsystem;
+    shooterPidController.setSetpoint(rpm);
+    shooterPidController.setTolerance(50);
+    addRequirements(shooterSubsystem);
   }
 
   // Called when the command is initially scheduled.

@@ -5,15 +5,29 @@
 package frc.robot.subsystems.shooter;
 
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.revrobotics.AbsoluteEncoder;
 
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.Constants;
 public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsystem. */
+  private DutyCycleEncoder shooterEncoder;
+ 
   private TalonFX topMotor;
   private TalonFX bottomMotor;
   public ShooterSubsystem() {
   this.topMotor = new TalonFX(Constants.canIDConstants.shooterTopMotorID);
+  this.bottomMotor = new TalonFX(Constants.canIDConstants.shooterBottomMotorID);
+  this.shooterEncoder = new DutyCycleEncoder(Constants.ShooterConstants.encoderPort);
+  
+    
+  
+  }
+  public double getRpm(){
+    return 2.0;
+    
   }
   public void setPower(double power){
     topMotor.setInverted(true);

@@ -21,7 +21,7 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    operatorJoystick.a().whileTrue(new SetWristToSetpoint(wristSubsystem));
+    operatorJoystick.a().whileTrue(new SetWristToSetpoint(wristSubsystem, 60.0/360.0));
   }
 
   public Command getAutonomousCommand() {

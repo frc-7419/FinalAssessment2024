@@ -10,7 +10,11 @@ public class Constants {
     public static double robotWidth = 25;
     public static int driveJoystickPort = 1;
     public static int operatorJoystickPort = 1;
-
+    public static class ShooterConstants{
+        public static int encoderPort = 6;
+        public static double encoderOffset = 40.0/360;
+        public static int shooterRpm = 6000;
+    }
     public static class wristConstants{
         public final static int encoderPort = 5;
         public static double encoderOffset= 40.0/360;
