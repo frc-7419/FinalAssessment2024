@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix6.hardware.Pigeon2;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SwerveBase extends SubsystemBase {
@@ -10,7 +9,6 @@ public class SwerveBase extends SubsystemBase {
     private final Pigeon2 pigeon2;
 
     public SwerveBase() {
-        // Initialize the Pigeon2 gyro on the SPI port (assuming ID 0, adjust if necessary)
         pigeon2 = new Pigeon2(0); 
 
         // Initialize swerve modules (IDs and offsets should be provided based on your setup)
