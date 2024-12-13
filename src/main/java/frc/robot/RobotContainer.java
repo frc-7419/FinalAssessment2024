@@ -27,26 +27,34 @@ public class RobotContainer {
   private final IntakeSubsystem intake = new IntakeSubsystem();
   private final HangerSubsystem hanger = new HangerSubsystem();
   private final ShooterSubsystem shooter = new ShooterSubsystem();
-  private final SwerveBase swerves = new SwerveBase();
+  private final SwerveBase swerve = new SwerveBase();
   private final HandoffSubsystem handoff = new HandoffSubsystem();
   private final XboxController driver = new XboxController(2);
   private final XboxController operator = new XboxController(3);
 
   private final RunShooter shootNote = new RunShooter(shooter);
+  private final RunIntake runIntakeHandoff = new RunIntake(intake);
+  private final RunShooterJoystick shootNoteJoystick = new RunShooterJoystick(operator, shooter);
   private final RunHandoff intakeHandoff = new RunHandoff(handoff);
   private final RunHangerJoystick raiseHanger = new RunHangerJoystick(driver, hanger);
-
-  private final RunIntake runIntakeHandoffJoystick = new RunIntake(intake);
-  private final RunShooterJoystick shootNoteJoystick = new RunShooterJoystick(operator, shooter);
-  private final SwerveBase swerveDrive = new SwerveBase();
+  private final RunSwerve swerveDrive = new RunSwerve(swerve, driver);
 
   
   public RobotContainer() {
     configureBindings();
+    setDefaultCommand();
   }
 
   private void configureBindings() {}
 
+  private void setDefaultCommand() {
+    hanger.setDefaultCommand(raiseHanger);
+    shooter.setDefaultCommand(shootNoteJoystick);
+    swerve.setDefaultCommand(swerveDrive);
+    intake.setDefaultCommand(runIntakeHandoff);
+    handoff.setDefaultCommand(runIntakeHandoff);
+    
+  }
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
   }
