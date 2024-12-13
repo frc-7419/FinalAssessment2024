@@ -51,7 +51,7 @@ public class SwerveModule extends SubsystemBase {
   }
   public void swerveState(SwerveModuleState swerveState) {
     driveMotor.set(swerveState.speedMetersPerSecond);
-    turnMotor.set(pidController.calculate(getWheelAngle(), swerveState.angle.getDegrees()));
+    turnMotor.set(pidController.calculate(getWheelAngle(), swerveState.angle.getDegrees() - offset));
   }
 
   @Override
