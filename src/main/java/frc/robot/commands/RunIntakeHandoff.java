@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.HandoffSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -13,27 +12,25 @@ public class RunIntakeHandoff extends Command {
   /** Creates a new RunIntakeHandoff. */
   private final IntakeSubsystem intake;
   private final HandoffSubsystem handoff;
-  private final XboxController controller;
-  public RunIntakeHandoff(IntakeSubsystem intake, HandoffSubsystem handoff, XboxController controller) {
+  public RunIntakeHandoff(IntakeSubsystem intake, HandoffSubsystem handoff) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.intake = intake;
     this.handoff = handoff;
-    this.controller = controller;
     addRequirements(intake, handoff);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intake.coast();
-    handoff.coast();
+    intake.setPower(1); //Place holder power
+    handoff.setPower(1); //Place holder power
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.setPower(controller.getRightY());
-    handoff.setPower(controller.getRightY());
+    intake.setPower(1); //Place holder power
+    handoff.setPower(1); //Place holder power
   }
 
   // Called once the command ends or is interrupted.

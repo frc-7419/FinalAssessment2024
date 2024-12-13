@@ -4,28 +4,36 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.HangerSubsystem;
 
-public class RaiseHanger extends Command {
+public class RaiseHangerBumper extends Command {
   /** Creates a new RaiseHanger. */
   private final HangerSubsystem hanger;
-  public RaiseHanger(HangerSubsystem hanger) {
+  private final XboxController controller;
+  public RaiseHangerBumper(HangerSubsystem hanger, XboxController controller) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.hanger = hanger;
+    this.controller = controller;
     addRequirements(hanger);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    hanger.setPower(1); //Place holder power
+    hanger.coast();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    hanger.setPower(1); //Place holder power
+    if (controller.getRightBumperPressed()) {
+      hanger.setPower(1); //Place holder power
+    }
+    else if (controller.getLeftBumperPressed()) {
+      hanger.setPower(-1); //Place holder power
+    }
   }
 
   // Called once the command ends or is interrupted.

@@ -9,6 +9,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants.PIDConstants;
 
@@ -18,10 +19,14 @@ public class SwerveModule extends SubsystemBase {
   private final TalonFX driveMotor;
   private final CANcoder canCoder;
   private final PIDController pidController;
-  public SwerveModule(TalonFX turnMotor, TalonFX driveMotor, CANcoder canCoder) {
+  private final String module;
+  private final double offset;
+  public SwerveModule(TalonFX turnMotor, TalonFX driveMotor, CANcoder canCoder, double offset, String module) {
     this.turnMotor = turnMotor;
     this.driveMotor = driveMotor;
     this.canCoder = canCoder;
+    this.module = module;
+    this.offset = offset;
     pidController = new PIDController(PIDConstants.kP, PIDConstants.kI, PIDConstants.kD);
     pidController.setTolerance(0.5);
     pidController.enableContinuousInput(0, 360);
@@ -37,8 +42,16 @@ public class SwerveModule extends SubsystemBase {
     driveMotor.setNeutralMode(NeutralModeValue.Coast);
   }
 
-  public void getWheelAngle() {
-    turnMotor.getPosition().getValueAsDouble();
+  public double getWheelAngle() {
+    return turnMotor.getPosition().getValueAsDouble();
+  }
+
+  public double swerveSpeed() {
+    return driveMotor.getAcceleration().getValueAsDouble();
+  }
+  public void swerveState(SwerveModuleState swerveState) {
+    driveMotor.set(swerveState.speedMetersPerSecond);
+    turnMotor.set(pidController.calculate(getWheelAngle(), swerveState.angle.getDegrees()));
   }
 
   @Override
