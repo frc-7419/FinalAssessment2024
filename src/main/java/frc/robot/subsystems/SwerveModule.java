@@ -41,7 +41,7 @@ public class SwerveModule extends SubsystemBase {
     // Apply the angle offset
     double adjustedAngle = swerveState.angle.getDegrees() - angleOffset;
     angController.setSetpoint(adjustedAngle);
-    angController.calculate(turnMotor.getPosition().getValueAsDouble());
+    angController.calculate(turnMotor.getPosition().getValueAsDouble(), adjustedAngle);
   }
   public void coast(){
     turnMotor.setNeutralMode(NeutralModeValue.Coast);
