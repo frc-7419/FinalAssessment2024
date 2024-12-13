@@ -18,7 +18,7 @@ public class RunShooter extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooterSubsystem.setPower(1);
+    shooterSubsystem.coast();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

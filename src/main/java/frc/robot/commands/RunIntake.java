@@ -18,7 +18,7 @@ public class RunIntake extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intakeSubsystem.setPower(1);
+    intakeSubsystem.coast();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
