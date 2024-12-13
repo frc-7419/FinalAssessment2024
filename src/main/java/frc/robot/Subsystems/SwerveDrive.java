@@ -17,7 +17,8 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.ctre.phoenix6.swerve.SwerveRequest.ApplyRobotSpeeds;
 public class SwerveDrive extends SubsystemBase {
   /** Creates a new SwerveDrive. */
-  public final SwerveDrivetrain swerve;
+  private final SwerveDrivetrain swerve;
+  // public static final double topSpeed = 13.37;
 
   public SwerveDrive() {
     //Idk why error
