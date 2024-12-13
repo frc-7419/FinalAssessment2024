@@ -39,7 +39,7 @@ public class SwerveModule extends SubsystemBase {
     moveMotor.set(speed);
 
     // Apply the angle offset
-    double adjustedAngle = swerveState.angle.getDegrees() + angleOffset;
+    double adjustedAngle = swerveState.angle.getDegrees() - angleOffset;
     angController.setSetpoint(adjustedAngle);
     angController.calculate(turnMotor.getPosition().getValueAsDouble());
   }
