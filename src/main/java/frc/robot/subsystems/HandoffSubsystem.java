@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HandoffSubsystem extends SubsystemBase {
   /** Creates a new HandoffSubsystem. */
-  public HandoffSubsystem() {}
+  public HandoffSubsystem() {
+    
+  }
 
   @Override
   public void periodic() {

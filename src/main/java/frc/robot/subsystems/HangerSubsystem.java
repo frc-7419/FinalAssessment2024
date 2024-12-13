@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HangerSubsystem extends SubsystemBase {
   /** Creates a new HangerSubsystem. */
-  public HangerSubsystem() {}
+  public HangerSubsystem() {
+    
+  }
 
   @Override
   public void periodic() {
