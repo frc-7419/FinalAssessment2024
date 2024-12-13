@@ -12,12 +12,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HandoffSubsystem extends SubsystemBase {
-  /** Creates a new HandoffSubsystem. */
+  /** Bottom motor inverted
+   * Functions: Coast, Brake, Run
+   */
   private final CANSparkMax topMotor;
   private final CANSparkMax bottomMotor; 
   public HandoffSubsystem() {
     this.topMotor = new CANSparkMax(0,MotorType.kBrushless);
     this.bottomMotor = new CANSparkMax(1,MotorType.kBrushless);
+    bottomMotor.setInverted(true);
   }
   public void coast(){
     topMotor.setIdleMode(IdleMode.kCoast);
@@ -25,7 +28,7 @@ public class HandoffSubsystem extends SubsystemBase {
   }
   public void run(double power){
     topMotor.set(power);
-    bottomMotor.set(-power);
+    bottomMotor.set(power);
   }
   public void brake(){
     topMotor.setIdleMode(IdleMode.kBrake);
@@ -34,8 +37,6 @@ public class HandoffSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Shooter: Top Motor Voltage", topMotor.getBusVoltage());
-    SmartDashboard.putNumber("Shooter: Bottom Motor Voltage", bottomMotor.getBusVoltage());
     SmartDashboard.putNumber("Shooter: Top Motor Temp", topMotor.getMotorTemperature());
     SmartDashboard.putNumber("Shooter: Bottom Motor Temp", bottomMotor.getMotorTemperature());
     // This method will be called once per scheduler run
