@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.HandoffSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
 public class RunHandoff extends Command {
   private final HandoffSubsystem handoffSubsystem;
@@ -13,7 +14,7 @@ public class RunHandoff extends Command {
     this.handoffSubsystem = handoffSubsystem; 
     addRequirements(handoffSubsystem);
   }
-  @Override
+@Override
   public void initialize() {
     handoffSubsystem.setSpeed(0.8);
   }
