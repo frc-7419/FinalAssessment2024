@@ -44,8 +44,9 @@ public class RobotContainer {
   private final RunShooter runShooter = new RunShooter(shooter);
   private final RunIntake runIntake = new RunIntake(intake);
 
-  private final Command runHangerUp = new RunCommand(() -> hanger.setPower(1), hanger);
-  private final Command runHangerDown = new RunCommand(() -> hanger.setPower(-1), hanger);
+  // creates a command that runs the lambda function for hanger whenever it is scheduled.
+  private final Command runHangerUp = new RunCommand(() -> hanger.setSpeed(1), hanger);
+  private final Command runHangerDown = new RunCommand(() -> hanger.setSpeed(-1), hanger);
 
   public RobotContainer() {
     configureBindings();

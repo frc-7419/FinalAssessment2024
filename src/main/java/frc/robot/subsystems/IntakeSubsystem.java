@@ -18,9 +18,9 @@ public class IntakeSubsystem extends SubsystemBase {
     leftMotor = new CANSparkMax(1, MotorType.kBrushless);
     rightMotor = new CANSparkMax(2, MotorType.kBrushless);
   }
-  public void setPower(double power){
-    leftMotor.set(power);
-    rightMotor.set(power);
+  public void setSpeed(double speed){
+    leftMotor.set(speed);
+    rightMotor.set(speed);
   }
   public void brake(){
     leftMotor.setIdleMode(IdleMode.kBrake);

@@ -16,9 +16,10 @@ public class ShooterSubsystem extends SubsystemBase {
     topMotor = new TalonFX(3);
     bottomMotor = new TalonFX(4);
   }
-  public void setPower(double power){
-    topMotor.set(power);
-    bottomMotor.set(power);
+
+  public void setSpeed(double speed){
+    topMotor.set(speed);
+    bottomMotor.set(speed);
   }
   public void brake(){
     topMotor.setNeutralMode(NeutralModeValue.Brake);

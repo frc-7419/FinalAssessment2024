@@ -27,9 +27,9 @@ public class RunJoystickHanger extends Command {
   @Override
   public void execute() {
     if (xboxController.getRightBumper()) {
-        hangerSubsystem.setPower(1);
+        hangerSubsystem.setSpeed(1);
     } else if(xboxController.getLeftBumper()){
-        hangerSubsystem.setPower(-1);
+        hangerSubsystem.setSpeed(-1);
     }
   }
 

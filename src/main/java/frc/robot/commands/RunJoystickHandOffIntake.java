@@ -30,8 +30,8 @@ public class RunJoystickHandOffIntake extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intakeSubsystem.setPower(xboxController.getRightY());
-    handOffSubsystem.setPower(xboxController.getRightY());
+    intakeSubsystem.setSpeed(xboxController.getRightY());
+    handOffSubsystem.setSpeed(xboxController.getRightY());
   }
 
   // Called once the command ends or is interrupted.

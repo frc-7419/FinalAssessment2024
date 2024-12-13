@@ -19,9 +19,9 @@ public class HandOffSubsystem extends SubsystemBase {
     bottomMotor.setInverted(true);
   }
 
-  public void setPower(double power){
-    topMotor.set(power);
-    bottomMotor.set(power);
+  public void setSpeed(double speed){
+    topMotor.set(speed);
+    bottomMotor.set(speed);
   }
 
   public void brake(){
