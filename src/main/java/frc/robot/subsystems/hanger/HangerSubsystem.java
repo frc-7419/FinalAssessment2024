@@ -7,6 +7,7 @@ package frc.robot.subsystems.hanger;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.Constants;
 
@@ -33,6 +34,7 @@ public class HangerSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Hanger Motor Temp is", hangerMotor.getDeviceTemp().getValueAsDouble());
     
    
   }

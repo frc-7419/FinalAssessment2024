@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems.intake;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.Constants;
 
@@ -61,5 +62,9 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("top Intake motor temp is", topIntakeMotor.getMotorTemperature());
+    SmartDashboard.putNumber("Bottom Intake motor temp is", bottomIntakeMotor.getMotorTemperature());
+    SmartDashboard.putNumber("Bottom Handoff motor temp is", bottomHandoffMotor.getMotorTemperature());
+    SmartDashboard.putNumber("top Handoff motor temp is", bottomHandoffMotor.getMotorTemperature());
   }
 }

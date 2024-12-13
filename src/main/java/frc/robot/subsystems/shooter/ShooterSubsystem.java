@@ -11,6 +11,7 @@ import com.revrobotics.AbsoluteEncoder;
 
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.Constants;
 public class ShooterSubsystem extends SubsystemBase {
@@ -55,5 +56,8 @@ public class ShooterSubsystem extends SubsystemBase {
   }
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Shooter Motor Top temp is ", topMotor.getDeviceTemp().getValueAsDouble());
+    SmartDashboard.putNumber("Shooter Motor Top temp is ", bottomMotor.getDeviceTemp().getValueAsDouble());
+    
   }
 }

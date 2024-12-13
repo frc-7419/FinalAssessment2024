@@ -30,7 +30,7 @@ public class Constants {
         public final static int handoffTopMotorID =  16;
         public final static int handoffBottomMotorID =  17;
         public final static int hangerMotorID =  16;
-        public final static int wristMotorID = 17;
+        public final static int wristMotorID = 18;
         
 
     }
@@ -54,6 +54,18 @@ public class Constants {
         public final static double frontLeftEncoderOffset = 98.35;
         public final static double backRightEncoderOffset = 74.19;
         public final static double backLeftEncoderOffset = 34.84;
+        public static final double kSpeedMotorGearRatio = 12.0/24.0* 24.0/22.0 * 15.0/45.0;
+        
+   
+        public final static int frontRightTurnEncoderID = 19;
+        public final static int frontLeftTurnEncoderID = 20;
+        public final static int backRightTurnEncoderID = 21;
+        public final static int backLeftTurnEncderID = 22;
+        
+        public static final double anglekP = 0.002;
+        public static final double anglekI = 0;
+        public static final double anglekD = 0;
+        public static int backLeftTurnEncoderID;
 
 
 
