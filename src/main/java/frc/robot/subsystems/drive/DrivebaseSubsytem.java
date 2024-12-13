@@ -1,15 +1,14 @@
-package drive;
+package frc.robot.subsystems.drive;
 
 import com.kauailabs.vmx.AHRSJNI;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
-import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.Constants.SwerveConstants;
 import com.kauailabs.navx.frc.AHRS;
 
-public class DrivebaseSubsystem extends SubsystemBase {
+public class DrivebaseSubsytem extends SubsystemBase {
   /** Creates a new DriveBase. */
   private final SwerveModule frontRight;
   private final SwerveModule frontLeft;
@@ -17,7 +16,7 @@ public class DrivebaseSubsystem extends SubsystemBase {
   private final SwerveModule backLeft;
   public final SwerveDriveOdometry odometry;
   private final AHRS ahrs;
-  public DrivebaseSubsystem() {
+  public DrivebaseSubsytem() {
     this.odometry = new SwerveDriveOdometry(null, null, null);
     this.ahrs = new AHRS();
     frontRight = new SwerveModule(SwerveConstants.frontRightTurnMotorID, SwerveConstants.frontRightDriveMotorID, SwerveConstants.frontRightTurnEncoderID,SwerveConstants.frontRightEncoderOffset);
@@ -37,9 +36,6 @@ public class DrivebaseSubsystem extends SubsystemBase {
   }
   public void resetYaw(){
      ahrs.zeroYaw();
-  }
-  public void setStates(SwerveModuleState[] states){
-    
   }
   public double getYaw(){
     return ahrs.getYaw();

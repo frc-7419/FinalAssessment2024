@@ -1,11 +1,11 @@
-package drive;
+package frc.robot.subsystems.drive;
 
 
 import java.beans.PersistenceDelegate;
 import java.math.RoundingMode;
 
 import com.ctre.phoenix6.hardware.CANcoder;
-import com.ctre.phoenix6.hardware.Pigeon2;
+
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -26,7 +26,6 @@ public class SwerveModule {
     private final RelativeEncoder driveCoder;
     private final PIDController angleController;
     private final String module;
-    private final Pigeon2 pigeonGyro;
 
 
 
@@ -100,11 +99,4 @@ public void setState(SwerveModuleState moduleState, Rotation2d rotation){
 
   
    
-}
-
-
-
-
-
-    
 }
