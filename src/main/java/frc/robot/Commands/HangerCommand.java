@@ -12,9 +12,9 @@ public class HangerCommand extends Command {
   /** Creates a new HangerCommand. */
   HangerSubsystem hangerSubsystem;
   XboxController opController;
-  public HangerCommand(HangerSubsystem HangerSubsystem, XboxController OpController) {
-    this.hangerSubsystem = HangerSubsystem;
-    this.opController = OpController;
+  public HangerCommand(HangerSubsystem hangerSubsystem, XboxController opController) {
+    this.hangerSubsystem = hangerSubsystem;
+    this.opController = opController;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -28,11 +28,10 @@ public class HangerCommand extends Command {
   @Override
   public void execute() {
     if (opController.getLeftBumper()){
-      hangerSubsystem.run(1);
+      hangerSubsystem.run(1.00);
     }
-
-    if{
-      hangerSubsystem.run(0);
+    else if (opController.getRightBumper()){
+      hangerSubsystem.run(-1.00);
     }
     else{
       hangerSubsystem.brake();
@@ -41,11 +40,14 @@ public class HangerCommand extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    hangerSubsystem.brake();
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    hangerSubsystem.brake();
     return false;
   }
 }

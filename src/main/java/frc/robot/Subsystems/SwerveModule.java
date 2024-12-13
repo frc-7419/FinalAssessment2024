@@ -46,6 +46,7 @@ public class SwerveModule extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Motor Speed: ", turnMotor.get());
     SmartDashboard.putNumber("Motor Angle: ", getPos());
     // This method will be called once per scheduler run
   }
