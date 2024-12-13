@@ -76,4 +76,4 @@
 - Not having uneccessary variables
 - Not doing things in a weird and over complicated way
 - How fully your code satifies the requirements
-- Your code not theoratically causing physical damage to the robot when run
+- Your code not theoretically causing physical damage to the robot when run
