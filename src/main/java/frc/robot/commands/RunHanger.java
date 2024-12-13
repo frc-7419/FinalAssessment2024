@@ -4,34 +4,34 @@
 
 package frc.robot.commands;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.HangerSubsystem;
 
-public class RunHangerJoystick extends Command {
-  /** Creates a new RunHangerJoystick. */
+public class RunHanger extends Command {
+  /** Creates a new RunHanger. */
   private final HangerSubsystem hangerSubsystem;
-  private final CommandXboxController joystick;
-  public RunHangerJoystick(HangerSubsystem hangerSubsystem, CommandXboxController joystick) {
+  private boolean upOrDown;
+  public RunHanger(HangerSubsystem hangerSubsystem, boolean upOrDown) {
     this.hangerSubsystem = hangerSubsystem;
-    this.joystick = joystick;
-    addRequirements(hangerSubsystem);
+    this.upOrDown = upOrDown;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    hangerSubsystem.coast();
+    hangerSubsystem.coast(); // DO we need to brake because the hanger would fall down if it is up?
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (joystick.rightBumper().getAsBoolean()){
+    if (upOrDown){
       hangerSubsystem.setSpeed(0.9);
     }
-    if (joystick.leftBumper().getAsBoolean()){
+    if (!upOrDown){
       hangerSubsystem.setSpeed(-0.9);
     }
   }

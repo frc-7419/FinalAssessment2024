@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HangerSubsystem extends SubsystemBase {
   /** Creates a new HangerSubsystem. */
-  private final TalonFX hangerMotor;
+  private final TalonFX hangerMotor; // Kraken is powered by the TalonFX software-- Ricky Hu
   public HangerSubsystem() {
     // Set values for Talon fx
     // Only one Hanger motor
