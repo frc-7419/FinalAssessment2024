@@ -22,7 +22,12 @@ public class RunSwerve extends CommandBase {
 
         swerveBase.drive(forwardSpeed, strafeSpeed, rotationSpeed);
     }
-
+    public void initialize() {
+        swerveBase.coast();
+      }
+    public void end(boolean interrupted) {
+        SwerveBase.brake();
+      }
     @Override
     public boolean isFinished() {
         return false; // Continuous driving

@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix6.hardware.Pigeon2;
+import com.ctre.phoenix6.signals.NeutralModeValue;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SwerveBase extends SubsystemBase {
@@ -12,12 +14,24 @@ public class SwerveBase extends SubsystemBase {
         pigeon2 = new Pigeon2(0); 
 
         // Initialize swerve modules (IDs and offsets should be provided based on your setup)
-        frontLeft = new SwerveModule(1, 2, 3, 98.35);
-        frontRight = new SwerveModule(4, 5, 6, 3.5);
-        backLeft = new SwerveModule(7, 8, 9, 34.84);
-        backRight = new SwerveModule(10, 11, 12, 74.19);
+        frontLeft = new SwerveModule(1, 2, 3, 98.35, 0, 0, 0);
+        frontRight = new SwerveModule(4, 5, 6, 3.5, 0, 0, 0);
+        backLeft = new SwerveModule(7, 8, 9, 34.84, 0, 0, 0);
+        backRight = new SwerveModule(10, 11, 12, 74.19, 0, 0, 0);
+    }
+    public static void brake() {
+        frontLeft.brake();
+        frontRight.brake();
+        backLeft.brake();
+        backRight.brake();
     }
 
+    public void coast() {
+        frontLeft.coast();
+        frontRight.coast();
+        backLeft.coast();
+        backRight.coast();
+    }
     public void drive(double forwardSpeed, double strafeSpeed, double rotationSpeed) {
         // Get the robot's current heading (yaw) from the Pigeon2
         double gyroAngle = Math.toRadians(pigeon2.getYaw().getValueAsDouble());  // Get yaw in degrees and convert to radians
