@@ -4,13 +4,19 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */
+  private final CANSparkMax topMotor;
+
   public IntakeSubsystem() {
-    private final NeoVortex topMotor;
-    private final NeoVortex bottomMotor;
+    topMotor = new CANSparkMax(0, MotorType.kBrushless);
+    
+
 
   }
 
