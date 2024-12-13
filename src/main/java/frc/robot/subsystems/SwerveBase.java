@@ -10,6 +10,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import com.ctre.phoenix6.hardware.CANcoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -21,10 +22,10 @@ public class SwerveBase extends SubsystemBase {
   private final Pigeon2 gyroscope;
   
   public SwerveBase() {
-    backLeft = new SwerveModule(new TalonFX(1), new TalonFX(2));
-    backRight = new SwerveModule(new TalonFX(3), new TalonFX(4));
-    frontLeft = new SwerveModule(new TalonFX(5), new TalonFX(7));
-    frontRight = new SwerveModule(new TalonFX(7), new TalonFX(8));
+    backLeft = new SwerveModule(new TalonFX(1), new TalonFX(2), new CANcoder(11), 34.84);
+    backRight = new SwerveModule(new TalonFX(3), new TalonFX(4), new CANcoder(12), 74.19);
+    frontLeft = new SwerveModule(new TalonFX(5), new TalonFX(7), new CANcoder(13), 98.35);
+    frontRight = new SwerveModule(new TalonFX(7), new TalonFX(8), new CANcoder(14), 3.5);
     gyroscope = new Pigeon2(0);  
   }
   public void setSwerve(double vx, double vy, double rx){

@@ -20,19 +20,27 @@ public class SwerveModule extends SubsystemBase {
   private final PIDController angController;
   private final CANcoder encoder;
   private double speed;
-  public SwerveModule(TalonFX turnMotor, TalonFX moveMotor) {
+
+  // Offsets for absolute encoders in degrees
+  private final double angleOffset;
+
+  public SwerveModule(TalonFX turnMotor, TalonFX moveMotor, CANcoder encoder, double angleOffset) {
     this.turnMotor = turnMotor;
     this.moveMotor = moveMotor;
-    encoder = new CANcoder(11);
-    angController = new PIDController(0.1, 0, 0);
-    angController.setTolerance(1);
-    speed = 0;
+    this.encoder = encoder;
+    this.angController = new PIDController(0.1, 0, 0);
+    this.angController.setTolerance(1);
+    this.speed = 0;
+    this.angleOffset = angleOffset; // Set the angle offset
   }
 
   public void setSwerveState(SwerveModuleState swerveState) {
     speed = swerveState.speedMetersPerSecond;
-    moveMotor.set(swerveState.speedMetersPerSecond);
-    angController.setSetpoint(swerveState.angle.getDegrees());
+    moveMotor.set(speed);
+
+    // Apply the angle offset
+    double adjustedAngle = swerveState.angle.getDegrees() + angleOffset;
+    angController.setSetpoint(adjustedAngle);
     angController.calculate(turnMotor.getPosition().getValueAsDouble());
   }
   public void coast(){

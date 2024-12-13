@@ -16,6 +16,7 @@ public class HandOffSubsystem extends SubsystemBase {
   public HandOffSubsystem() {
     topMotor = new CANSparkMax(5, MotorType.kBrushless);
     bottomMotor = new CANSparkMax(6, MotorType.kBrushless);
+    bottomMotor.setInverted(true);
   }
 
   public void setPower(double power){
