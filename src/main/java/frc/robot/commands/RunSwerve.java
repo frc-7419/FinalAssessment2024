@@ -26,7 +26,7 @@ public class RunSwerve extends CommandBase {
         swerveBase.coast();
       }
     public void end(boolean interrupted) {
-        SwerveBase.brake();
+        swerveBase.brake();
       }
     @Override
     public boolean isFinished() {

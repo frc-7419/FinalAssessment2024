@@ -7,7 +7,10 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SwerveBase extends SubsystemBase {
-    private final SwerveModule frontLeft, frontRight, backLeft, backRight;
+    private final SwerveModule frontLeft;
+    private final SwerveModule frontRight;
+    private final SwerveModule backLeft;
+    private final SwerveModule backRight;
     private final Pigeon2 pigeon2;
 
     public SwerveBase() {
@@ -19,18 +22,19 @@ public class SwerveBase extends SubsystemBase {
         backLeft = new SwerveModule(7, 8, 9, 34.84, 0, 0, 0);
         backRight = new SwerveModule(10, 11, 12, 74.19, 0, 0, 0);
     }
-    public static void brake() {
-        frontLeft.brake();
-        frontRight.brake();
-        backLeft.brake();
-        backRight.brake();
-    }
+    
 
     public void coast() {
         frontLeft.coast();
         frontRight.coast();
         backLeft.coast();
         backRight.coast();
+    }
+    public void brake() {
+        frontRight.brake();
+        frontRight.brake();
+        backLeft.brake();
+        backRight.brake();
     }
     public void drive(double forwardSpeed, double strafeSpeed, double rotationSpeed) {
         // Get the robot's current heading (yaw) from the Pigeon2

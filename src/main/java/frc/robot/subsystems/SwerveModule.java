@@ -25,15 +25,16 @@ public class SwerveModule {
         turnPidController = new PIDController(kP, kI, kD);
         
     }
+    public void coast() {
+        driveMotor.setNeutralMode(NeutralModeValue.Coast);
+        turnMotor.setNeutralMode(NeutralModeValue.Coast);
+    }
     public void brake() {
         driveMotor.setNeutralMode(NeutralModeValue.Brake);
         turnMotor.setNeutralMode(NeutralModeValue.Brake);
-      }
+    }
     
-      public void coast() {
-        driveMotor.setNeutralMode(NeutralModeValue.Coast);
-        turnMotor.setNeutralMode(NeutralModeValue.Coast);
-      }
+    
     // Method to set the speed and angle of the module
     public void setDriveAndAngle(double speed, double angle) {
         // Calculate the desired angle, taking into account the offset and normalization
