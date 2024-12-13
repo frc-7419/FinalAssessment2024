@@ -28,7 +28,7 @@ public class SwerveModule extends SubsystemBase {
   }
 
   public void setSwerveState(SwerveModuleState swerveState) {
-    moduleSpeed = swerveState.speedMetersPerSecond;
+    moduleSpeed = swerveState.speedMetersPerSecond; 
     moveMotor.set(swerveState.speedMetersPerSecond);
     angController.setSetpoint(swerveState.angle.getDegrees());
     angController.calculate(turnMotor.getPosition().getValueAsDouble());
@@ -45,7 +45,7 @@ public class SwerveModule extends SubsystemBase {
     return encoder.getPosition().getValueAsDouble();
   }
   public double getModuleSpeed(){
-    return moduleSpeed;
+    return moduleSpeed;//i feel like theres probably a better way to get speed
   }
 
 

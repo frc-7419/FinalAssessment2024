@@ -4,12 +4,14 @@
 
 package frc.robot;
 
+import com.fasterxml.jackson.databind.util.Named;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.RunHandoff;
 import frc.robot.commands.RunIntake;
@@ -44,6 +46,10 @@ public class RobotContainer {
   private final RunShooter runShooter = new RunShooter(shooter);
   private final RunIntake runIntake = new RunIntake(intake);
 
+  //hanger command in auton is kinda useless and probably won't be expanded on so i just made them as lambdas
+  private final Command runHangerUp = new RunCommand(()->hanger.setSpeed(0.7), hanger);
+  private final Command runHangerDown = new RunCommand(()->hanger.setSpeed(-0.7), hanger);
+
   public RobotContainer() {
     configureBindings();
     configureNamedCommands();
@@ -59,6 +65,8 @@ public class RobotContainer {
     NamedCommands.registerCommand("RunShooter",runShooter);
     NamedCommands.registerCommand("RunHandoff",runHandoff);
     NamedCommands.registerCommand("RunIntake",runIntake);
+    NamedCommands.registerCommand("RunHangerUp",runHangerUp);
+    NamedCommands.registerCommand("RunHangerDown",runHangerDown);
   }
   private void setDefaultCommand(){
     swerveBase.setDefaultCommand(runSwerveDrive);
