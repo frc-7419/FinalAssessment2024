@@ -19,10 +19,10 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveModule frontLeft;
   private Pigeon2 gyro;
   public SwerveSubsystem() {
-    this.backRight = new SwerveModule(new TalonFX(7), new TalonFX(11));
-    this.backLeft = new SwerveModule(new TalonFX(8), new TalonFX(12));
-    this.frontRight = new SwerveModule(new TalonFX(9),new  TalonFX(13));
-    this.frontLeft = new SwerveModule(new TalonFX(10), new TalonFX(14));
+    this.backRight = new SwerveModule(new TalonFX(7), new TalonFX(11), 74.19);
+    this.backLeft = new SwerveModule(new TalonFX(8), new TalonFX(12), 34.84);
+    this.frontRight = new SwerveModule(new TalonFX(9),new  TalonFX(13), 3.5);
+    this.frontLeft = new SwerveModule(new TalonFX(10), new TalonFX(14), 98.35);
     this.gyro = new Pigeon2(0);
   }
 
@@ -38,7 +38,7 @@ public class SwerveSubsystem extends SubsystemBase {
     frontRight.brake();
     frontLeft.brake();
   }
-  public void setSwerveModuleState(SwerveModuleState[] states){
+  public void setSwerveState(SwerveModuleState[] states){
       backRight.setSwerveModuleState(states[0]);
       backLeft.setSwerveModuleState(states[1]);
       frontRight.setSwerveModuleState(states[2]);
@@ -51,7 +51,7 @@ public class SwerveSubsystem extends SubsystemBase {
   }
   
   public void setChassisSpeed(ChassisSpeeds chassisSpeeds) {
-    setSwerveModuleState(new SwerveDriveKinematics().toSwerveModuleStates(chassisSpeeds));
+    setSwerveState(new SwerveDriveKinematics().toSwerveModuleStates(chassisSpeeds));
   }
 
 

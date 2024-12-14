@@ -18,10 +18,12 @@ public class SwerveModule extends SubsystemBase {
   private final TalonFX moveMotor;
   private final PIDController anglePID;
   private final CANcoder cancoder;
+  double angleOffset;
 
-  public SwerveModule(TalonFX TurnMotor, TalonFX MoveMotor) {
+  public SwerveModule(TalonFX TurnMotor, TalonFX MoveMotor, double angleOffset) {
     this.turnMotor = TurnMotor;
     this.moveMotor = MoveMotor;
+    this.angleOffset = angleOffset;
     this.cancoder = new CANcoder(10);
     this.anglePID = new PIDController(0,0,0);
 
@@ -38,8 +40,9 @@ public class SwerveModule extends SubsystemBase {
     return cancoder.getPosition().getValueAsDouble();
   }
   public void setSwerveModuleState(SwerveModuleState state){
-      moveMotor.set(state.speedMetersPerSecond);
-      turnMotor.set(anglePID.calculate(getPos(), state.angle.getDegrees()));
+      double adjustedAngle =state.angle.getDegrees() - angleOffset;
+      moveMotor.set(state.speedMetersPerSecond); 
+      turnMotor.set(anglePID.calculate(getPos(), adjustedAngle));
 
   }
 
