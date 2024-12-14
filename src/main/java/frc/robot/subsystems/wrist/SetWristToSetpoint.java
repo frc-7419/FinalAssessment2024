@@ -11,9 +11,9 @@ import edu.wpi.first.units.Units;
 
 public class SetWristToSetpoint extends Command {
   /** Creates a new SetWristToSetpoint. */
-  private WristSubsystem wristSubsystem;
-  private PIDController wristPIDController = new PIDController(12, 0, 0.25);
-  private ArmFeedforward ff = new ArmFeedforward(0, 1, 0);
+  private final WristSubsystem wristSubsystem;
+  private final PIDController wristPIDController = new PIDController(12, 0, 0.25);
+  private final ArmFeedforward ff = new ArmFeedforward(0, 1, 0);
   
   public SetWristToSetpoint(WristSubsystem wristSubsystem, double setpoint) {
     // Use addRequirements() here to declare subsystem dependencies.

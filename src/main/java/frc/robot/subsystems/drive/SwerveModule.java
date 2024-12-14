@@ -17,23 +17,24 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.kinematics.struct.SwerveModulePositionStruct;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.Constants.SwerveConstants;
 
-public class SwerveModule {
+public class SwerveModule extends SubsystemBase {
     private final CANSparkMax turnMotor;
     private final CANSparkMax driveMotor;
     private final CANcoder turnEncoder;
     private final RelativeEncoder driveCoder;
     private final PIDController angleController;
     private final String module;
-
+    private final double MAX_VOLTS = 12.0;
 
 
 //to be frank this code is pretty chopped
-//i take that back this code is horrendous but it functions so i will not be touching it.
 public SwerveModule(int turnMotorId, int driveMotorId, int turnEncoderId, double turnEncoderOffset){
     this.angleController = new PIDController(SwerveConstants.anglekP, SwerveConstants.anglekI, SwerveConstants.anglekD);
-
+    
     angleController.setTolerance(10.0/360.0);
     this.turnMotor = new CANSparkMax(turnMotorId, MotorType.kBrushless);
     this.driveMotor = new CANSparkMax(turnEncoderId, MotorType.kBrushless);
@@ -66,21 +67,25 @@ public void setPower(double power){
     turnMotor.setVoltage(power);
     driveMotor.setVoltage(power);
     
-    
 
 
 }
-public void setModuleState(SwerveModuleState state){
-    double speed = state.speedMetersPerSecond;
-    angleController.setSetpoint(state.angle.getDegrees());
-    driveMotor.set(speed);
-    angleController.calculate(state.angle.getDegrees());
+public double getDegrees(){
+    return turnEncoder.getPosition().getValueAsDouble();
+}
+public void drive(double power){
+    driveMotor.set(power);
+    double setpoint = turnEncoder.getPosition().getValueAsDouble() * (MAX_VOLTS * 0.5) + (MAX_VOLTS * 0.5); // Optimization offset can be calculated here.
+    if (setpoint < 0) {
+        setpoint = MAX_VOLTS + setpoint;
+    }
+    if (setpoint > MAX_VOLTS) {
+        setpoint = setpoint - MAX_VOLTS;
+    }
 
-
-
-
-
-
+    angleController.setSetpoint (setpoint);
+    
+    driveMotor.setVoltage(power);
 }
 public SwerveModuleState getSwerveModuleState(){
     return new SwerveModuleState(driveCoder.getVelocity(), Rotation2d.fromDegrees(turnEncoder.getPosition().getValueAsDouble()));
@@ -104,10 +109,31 @@ public Boolean reachedDistanced(double meters){
     return driveCoder.getPosition() >= meters;
 
 }
-public void setState(SwerveModuleState moduleState, Rotation2d rotation){
-    SwerveModuleState newModuleState = SwerveModuleState.optimize(moduleState, rotation);
-     
-    }
+public void setState(SwerveModuleState state){
+    double speed = state.speedMetersPerSecond;
+    angleController.setSetpoint(state.angle.getDegrees());
+    driveMotor.set(speed);
+    angleController.calculate(state.angle.getDegrees());
+
+
+
+
+
+
+}
+public double getAngle(){
+    return turnEncoder.getPosition().getValueAsDouble();
+}
+public double getSpeed(){
+    return driveCoder.getVelocity();
+}
+@Override
+public void periodic() {
+    SmartDashboard.putNumber("Angle", turnEncoder.getPosition().getValueAsDouble());
+    SmartDashboard.putNumber("Speed", driveCoder.getVelocity());
+
+}
+
 
 
 

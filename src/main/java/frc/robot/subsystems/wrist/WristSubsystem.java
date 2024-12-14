@@ -56,4 +56,9 @@ public class WristSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Wrist Motor Temp is", wristMotor.getDeviceTemp().getValueAsDouble());
   }
+
+  public void set(double power) {
+    wristMotor.set(power);
+    
+  }
 }

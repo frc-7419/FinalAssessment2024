@@ -23,14 +23,16 @@ public class Constants {
     }
 
     public static class canIDConstants{
+        //all these canids are out of order because i kept realizing i need to make more
         public final static int shooterTopMotorID = 8;
         public final static int shooterBottomMotorID = 9;
         public final static int intakeTopMotorID = 14;
         public final static int intakeBottomMotorID = 15;
         public final static int handoffTopMotorID =  16;
         public final static int handoffBottomMotorID =  17;
-        public final static int hangerMotorID =  16;
+        public final static int hangerMotorID =  24;
         public final static int wristMotorID = 18;
+        public static int pigeonGyroID = 23;
         
 
     }
@@ -62,10 +64,11 @@ public class Constants {
         public final static int backRightTurnEncoderID = 21;
         public final static int backLeftTurnEncderID = 22;
         
-        public static final double anglekP = 0.002;
-        public static final double anglekI = 0;
-        public static final double anglekD = 0;
-        public static int backLeftTurnEncoderID;
+      
+        public static int backLeftTurnEncoderID = 30;
+        public static double anglekP = 0.02;
+        public static double anglekI = 0.00;
+        public static double anglekD = 0.2;
 
 
 

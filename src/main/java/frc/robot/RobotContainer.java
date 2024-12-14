@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.Constants;
+import frc.robot.subsystems.drive.DrivebaseSubsytem;
+import frc.robot.subsystems.hanger.HangerSubsystem;
+import frc.robot.subsystems.intake.IntakeSubsystem;
+import frc.robot.subsystems.shooter.ShooterSubsystem;
 import frc.robot.subsystems.wrist.SetWristToSetpoint;
 import frc.robot.subsystems.wrist.WristSubsystem;
 
@@ -15,6 +19,10 @@ public class RobotContainer {
   private CommandXboxController driverJoystick = new CommandXboxController(Constants.driveJoystickPort);
   private CommandXboxController operatorJoystick = new CommandXboxController(Constants.operatorJoystickPort);
   private WristSubsystem wristSubsystem = new WristSubsystem();
+  private IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  private ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  private HangerSubsystem hangerSubsystem = new HangerSubsystem();
+  private DrivebaseSubsytem drivebaseSubsytem = new DrivebaseSubsytem();
 
   public RobotContainer() {
     configureBindings();
@@ -26,5 +34,10 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
+  }
+  public void setdefaultCommands() {
+    
+    
+    
   }
 }

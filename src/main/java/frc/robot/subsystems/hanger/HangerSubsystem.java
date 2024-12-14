@@ -38,4 +38,8 @@ public class HangerSubsystem extends SubsystemBase {
     
    
   }
+public void set(double power) {
+    
+    hangerMotor.set(power);
+}
 }
