@@ -7,7 +7,6 @@ package frc.robot.subsystems.wrist;
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.units.Units;
 
 public class SetWristToSetpoint extends Command {
   /** Creates a new SetWristToSetpoint. */
