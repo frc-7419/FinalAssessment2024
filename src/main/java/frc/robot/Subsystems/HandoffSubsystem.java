@@ -22,7 +22,7 @@ public class HandoffSubsystem extends SubsystemBase{
     // Setting power to the motors
     public void runHandoffMotors(double power) {
         handoffMotorOne.set(power);
-        handoffMotorTwo.set(power);  
+        handoffMotorTwo.set(-1*power); 
     }
 
     // Setting the motors into Coast mode
