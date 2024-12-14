@@ -19,12 +19,12 @@ public class ShooterCommand extends Command{
   public void initialize() {
     shooter.coast();
   }
-
+  
   @Override
   public void execute() {
-    double spd = ctrl.getLeftY();
+    double power = ctrl().;
     if (lastSetSpeed != spd) {
-      shooter.setSpeed(spd);
+      shooter.runShootersMotors(power);
       lastSetSpeed = spd;
     }
   }
