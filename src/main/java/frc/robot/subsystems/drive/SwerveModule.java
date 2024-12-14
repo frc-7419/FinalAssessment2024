@@ -30,6 +30,7 @@ public class SwerveModule {
 
 
 //to be frank this code is pretty chopped
+//i take that back this code is horrendous but it functions so i will not be touching it.
 public SwerveModule(int turnMotorId, int driveMotorId, int turnEncoderId, double turnEncoderOffset){
     this.angleController = new PIDController(SwerveConstants.anglekP, SwerveConstants.anglekI, SwerveConstants.anglekD);
 
@@ -65,6 +66,19 @@ public void setPower(double power){
     turnMotor.setVoltage(power);
     driveMotor.setVoltage(power);
     
+    
+
+
+}
+public void setModuleState(SwerveModuleState state){
+    double speed = state.speedMetersPerSecond;
+    angleController.setSetpoint(state.angle.getDegrees());
+    driveMotor.set(speed);
+    angleController.calculate(state.angle.getDegrees());
+
+
+
+
 
 
 }
