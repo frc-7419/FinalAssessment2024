@@ -11,14 +11,15 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.constants.ConstantsEverything;
 
 public class HangerSubsystem extends SubsystemBase {
   /** Creates a new HangerSubsystem. */
-  private final TalonFX hangerMotor; // Kraken is powered by the TalonFX software-- Ricky Hu
+  private final TalonFX hangerMotor; // Kraken is powered by the TalonFX software-- Ricky Hu  
   public HangerSubsystem() {
     // Set values for Talon fx
     // Only one Hanger motor
-    hangerMotor = new TalonFX(2);
+    hangerMotor = new TalonFX(ConstantsEverything.hangerMotorCanID);
     // Might need to make it inverted?
   }
   // Regular coasting and braking of the motor

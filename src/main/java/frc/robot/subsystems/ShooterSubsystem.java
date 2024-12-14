@@ -9,14 +9,15 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.constants.ConstantsEverything;
 
 public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsystem. */
   private final TalonFX topShooterMotor;
   private final TalonFX bottomShooterMotor;
   public ShooterSubsystem() {
-    topShooterMotor = new TalonFX(3);
-    bottomShooterMotor = new TalonFX(4);
+    topShooterMotor = new TalonFX(ConstantsEverything.shooterTopMotorCanID);
+    bottomShooterMotor = new TalonFX(ConstantsEverything.shooterBottomMotorCanID);
     bottomShooterMotor.setInverted(true);
   }
 

@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.constants.ConstantsEverything;
 
 public class HandoffSubsystem extends SubsystemBase {
   /** Creates a new HandoffSubsystem. */
@@ -18,8 +19,8 @@ public class HandoffSubsystem extends SubsystemBase {
   public HandoffSubsystem() {
 
     // Add values for the deviceID
-    topMotor = new CANSparkMax(0, MotorType.kBrushless);
-    bottomMotor = new CANSparkMax(1, MotorType.kBrushless);
+    topMotor = new CANSparkMax(ConstantsEverything.handoffTopMotorCanID, MotorType.kBrushless);
+    bottomMotor = new CANSparkMax(ConstantsEverything.handoffBottomMotorCanID, MotorType.kBrushless);
     bottomMotor.setInverted(true);
 
   }

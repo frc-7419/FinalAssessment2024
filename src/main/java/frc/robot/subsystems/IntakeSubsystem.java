@@ -12,14 +12,15 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.constants.ConstantsEverything;
 
 public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */
   private final CANSparkMax motorOne;
   private final CANSparkMax motorTwo;
   public IntakeSubsystem() {
-    motorOne = new CANSparkMax(5, MotorType.kBrushless);
-    motorTwo = new CANSparkMax(6, MotorType.kBrushless);
+    motorOne = new CANSparkMax(ConstantsEverything.intakeMotorOneCanID, MotorType.kBrushless);
+    motorTwo = new CANSparkMax(ConstantsEverything.intakeMotorTwoCanID, MotorType.kBrushless);
   }
 
   public void coast(){
