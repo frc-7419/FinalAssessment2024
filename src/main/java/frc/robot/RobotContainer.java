@@ -7,7 +7,6 @@ package frc.robot;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.RunHandoff;
 import frc.robot.commands.RunHanger;
@@ -22,7 +21,6 @@ import frc.robot.subsystems.HangerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SwerveBase;
-import pabeles.concurrency.ConcurrencyOps.NewInstance;
 
 public class RobotContainer {
   // Init all the subsystems commands and required stuff
