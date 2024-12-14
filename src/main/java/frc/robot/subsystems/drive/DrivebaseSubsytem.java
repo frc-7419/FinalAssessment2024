@@ -1,6 +1,5 @@
 package frc.robot.subsystems.drive;
 
-import com.kauailabs.vmx.AHRSJNI;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -9,7 +8,7 @@ import frc.Constants;
 import frc.Constants.SwerveConstants;
 
 import com.ctre.phoenix6.hardware.Pigeon2;
-import com.kauailabs.navx.frc.AHRS;
+
 
 public class DrivebaseSubsytem extends SubsystemBase {
   /** Creates a new DriveBase. */
@@ -18,12 +17,12 @@ public class DrivebaseSubsytem extends SubsystemBase {
   private final SwerveModule backRight;
   private final SwerveModule backLeft;
   public final SwerveDriveOdometry odometry;
-  private final AHRS ahrs;
+  
   private final Pigeon2 pigeonGyro;
   public double maxVoltage = 12.0;
   public DrivebaseSubsytem() {
     this.odometry = new SwerveDriveOdometry(null, null, null);
-    this.ahrs = new AHRS();//prolly not needed but eh
+    
     frontRight = new SwerveModule(SwerveConstants.frontRightTurnMotorID, SwerveConstants.frontRightDriveMotorID, SwerveConstants.frontRightTurnEncoderID,SwerveConstants.frontRightEncoderOffset);
     frontLeft = new SwerveModule(SwerveConstants.frontLeftTurnMotorID, SwerveConstants.frontLeftDriveMotorID, SwerveConstants.frontLeftTurnEncoderID, SwerveConstants.frontLeftEncoderOffset);
     backRight = new SwerveModule(SwerveConstants.backRightTurnMotorID, SwerveConstants.backRightDriveMotorID, SwerveConstants.backRightTurnEncoderID, SwerveConstants.backRightEncoderOffset);
@@ -45,16 +44,7 @@ public class DrivebaseSubsytem extends SubsystemBase {
   }
   //i dont know if i need ahrs here i just remembered it from my old code
   
-  public double getPitch(){
-    return ahrs.getPitch();
-  }
-  public void resetYaw(){
-     ahrs.zeroYaw();
-  }
-  public Boolean distanceReached(double distance){
-    return backLeft.reachedDistanced(distance) && frontRight.reachedDistanced(distance) && backRight.reachedDistanced(distance) && frontLeft.reachedDistanced(distance);
-    //why is the and && in java :(
-  }
+  
   public void setSwerveModuleStates(SwerveModuleState frontLeftState, SwerveModuleState frontRightState, SwerveModuleState backRightState, SwerveModuleState backLeftState){
     frontLeft.setState(frontLeftState);
     frontRight.setState(frontRightState);
