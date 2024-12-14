@@ -20,17 +20,13 @@ public class SwerveDriveCommand extends Command {
     this.rotation = rotation;
     this.xSpeed = xSpeed;
     this.ySpeed = ySpeed;
-
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    swerveDriveSubsystem.drive(0,0,0);
+    swerveDriveSubsystem.drive(xSpeed,ySpeed,rotation);
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     xSpeed = xboxController.getLeftX();
@@ -39,13 +35,11 @@ public class SwerveDriveCommand extends Command {
     swerveDriveSubsystem.drive(xSpeed,ySpeed,rotation);
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     swerveDriveSubsystem.drive(0,0,0);
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

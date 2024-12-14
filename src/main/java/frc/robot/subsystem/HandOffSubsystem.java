@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class HandOffSubsystem extends SubsystemBase {
   private final CANSparkMax handOffTopMotor;
   private final CANSparkMax handOffBottomMotor;
-  /** Creates a new HandoffSubsystem. */
+
   public HandOffSubsystem() {
     this.handOffTopMotor = new CANSparkMax(5,MotorType.kBrushless);
     this.handOffBottomMotor = new CANSparkMax(6,MotorType.kBrushless);

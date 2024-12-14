@@ -32,5 +32,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Shooter Left Motor Voltage", shooterLeftMotor.getMotorVoltage().getValue());
     SmartDashboard.putNumber("Shooter Right Motor Voltage", shooterRightMotor.getMotorVoltage().getValue());
+    SmartDashboard.putNumber("Shooter Left Motor Temp", shooterLeftMotor.getMotorVoltage().getValue());
+    SmartDashboard.putNumber("Shooter Right Motor Temp", shooterRightMotor.getDeviceTemp().getValue());
   }
 }
