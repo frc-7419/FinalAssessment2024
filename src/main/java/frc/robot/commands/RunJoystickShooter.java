@@ -4,30 +4,36 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.ShooterSubsystem;
 
 public class RunJoystickShooter extends Command {
   /** Creates a new RunJoystickShooter. */
-  public RunJoystickShooter() {
+  private final XboxController xboxController;
+  private final ShooterSubsystem shooterSubsystem;
+  public RunJoystickShooter(XboxController xboxController, ShooterSubsystem shooterSubsystem ) {
+    this.shooterSubsystem = shooterSubsystem;
+    this.xboxController = xboxController;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    shooterSubsystem.coast();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    shooterSubsystem.setSpeed(xboxController.getRightY());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
+    shooterSubsystem.brake();
   }
 
   // Returns true when the command should end.
