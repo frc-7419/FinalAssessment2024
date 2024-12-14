@@ -5,15 +5,15 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Subsystems.ShooterSubsystem;
 
 public class ShooterCommand extends Command{
-    private final ShooterSubsystem shooterSubsystem;
-    private final XboxController ctrl;
-    private double lastSetSpeed = 0;
+  private  ShooterSubsystem shooter=null;
+  private  XboxController ctrl;
+  private double lastSetSpeed = 0;
 
-    public void ShooterUsingJoystick(XboxController xboxController, ShooterSubsystem shooterSubsystem) {
-        this.shooter = shooterSubsystem;
-        this.ctrl = xboxController;
-        addRequirements(shooterSubsystem);
-    }
+  public void ShooterUsingJoystick(XboxController xboxController, ShooterSubsystem shooterSubsystem) {
+    this.shooter = shooterSubsystem;
+    this.ctrl = xboxController;
+    addRequirements(shooterSubsystem);
+  }
 
   @Override
   public void initialize() {
