@@ -5,15 +5,36 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsystem. */
+  private final TalonFX topMotor;
+  private final TalonFX bottomMotor;
   public ShooterSubsystem() {
-    
+    topMotor = new TalonFX(0);
+    bottomMotor = new TalonFX(0);
+    bottomMotor.setInverted(true);
   }
-
+  public void coast(){
+    topMotor.setNeutralMode(NeutralModeValue.Coast);
+    bottomMotor.setNeutralMode(NeutralModeValue.Coast);
+  }
+  public void brake(){
+    topMotor.setNeutralMode(NeutralModeValue.Brake);
+    bottomMotor.setNeutralMode(NeutralModeValue.Brake);
+  }
+  public void setSpeed(double speed){
+    topMotor.set(speed);
+    bottomMotor.set(speed);
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("top Shooter motor Temperature", topMotor.getDeviceTemp().getValueAsDouble());
+    SmartDashboard.putNumber("bottom shooter motor temperature", bottomMotor.getDeviceTemp().getValueAsDouble() );
+
   }
 }
