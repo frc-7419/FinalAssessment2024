@@ -32,7 +32,7 @@ public class HangerSubsystem extends SubsystemBase{
     }
 
     // Geting info on the Hanger Motor
-    public double getHangerInfo() {
+    public HangerInfo getHangerInfo() {
         HangerInfo motor = new HangerInfo();
         motor.hangerVelocity = hangerMotor.getVelocity().getValueAsDouble();
         motor.hangerPosition = hangerMotor.getPosition().getValueAsDouble();

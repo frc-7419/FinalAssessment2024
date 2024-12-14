@@ -6,10 +6,10 @@ import frc.robot.Subsystems.HandoffSubsystem;
 
 
 public class HandoffCommand extends Command {
-    // making an object handoffSubsystem of type HandoffSubsystem
-    private final HandoffSubsystem handoffSubsystem;
+    // making an object handoff of type HandoffSubsystem
+    private  HandoffSubsystem handoff;
     // making an object ctrl of type XboxController
-    private final XboxController ctrl;
+    private  XboxController ctrl;
     // making a variable of type double storing the last known speed
     private double lastSetSpeed = 0;
     
@@ -17,7 +17,7 @@ public class HandoffCommand extends Command {
     public void handoffUsingRB(XboxController xboxController, HandoffSubsystem handoffSubsystem) {
         this.handoff = handoffSubsystem;
         this.ctrl = xboxController;
-        addRequirements(hangoffSubsystem);
+        addRequirements(handoffSubsystem);
     }
     
     // Setting the motors to coast

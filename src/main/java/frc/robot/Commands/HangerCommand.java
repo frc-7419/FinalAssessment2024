@@ -5,10 +5,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Subsystems.HangerSubsystem;
 
 public class HangerCommand extends Command{
-  // making an object hangerSubsystem of type HangerSubsystem
-  private final HangerSubsystem hangerSubsystem;
+  // making an object hanger of type HangerSubsystem
+  private  HangerSubsystem hanger;
   // making an object ctrl of type XboxController
-  private final XboxController ctrl;
+  private  XboxController ctrl;
   // making a variable of type double storing the last known speed
   private double lastSetSpeed = 0;
 

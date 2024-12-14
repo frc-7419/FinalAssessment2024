@@ -6,7 +6,7 @@ import frc.robot.Subsystems.IntakeSubsystem;
 
 public class IntakeCommand extends Command{
     // making an object intakeSubsystem of type IntakeSubsystem
-    private IntakeSubsystem intakeSubsystem;
+    private IntakeSubsystem intake;
     // making an object ctrl of type XboxController
     private XboxController ctrl;
     // making a variable of type double storing the last known speed
