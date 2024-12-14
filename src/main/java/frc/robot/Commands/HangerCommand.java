@@ -5,31 +5,37 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Subsystems.HangerSubsystem;
 
 public class HangerCommand extends Command{
+  // making an object hangerSubsystem of type HangerSubsystem
+  private final HangerSubsystem hangerSubsystem;
+  // making an object ctrl of type XboxController
+  private final XboxController ctrl;
+  // making a variable of type double storing the last known speed
+  private double lastSetSpeed = 0;
 
-    private final HangerSubsystem hangerSubsystem;
-    private final XboxController ctrl;
-    private double lastSetSpeed = 0;
+  // Defining the object
+  public void HangerUsingLT(XboxController xboxController, HangerSubsystem hangerSubsystem) {
+    this.hanger = hangerSubsystem;
+    this.ctrl = xboxController;
+    addRequirements(hangerSubsystem);
+  }
 
-    public void HangerUsingLT(XboxController xboxController, HangerSubsystem hangerSubsystem) {
-        this.hanger = hangerSubsystem;
-        this.ctrl = xboxController;
-        addRequirements(hangerSubsystem);
-    }
-
+  // Setting the motors to coast
   @Override
   public void initialize() {
     hanger.coast();
   }
 
+  // Setting the power to the motors
   @Override
   public void execute() {
     double spd = ctrl.getLeftY();
     if (lastSetSpeed != spd) {
-      hanger.setSpeed(spd);
+      hanger.runHangerMotors(spd);
       lastSetSpeed = spd;
     }
   }
 
+  // Setting the motors to brake
   @Override
   public void end(boolean interrupted) {
     hanger.brake();
@@ -40,4 +46,4 @@ public class HangerCommand extends Command{
     return false;
   }
 }
-}
+

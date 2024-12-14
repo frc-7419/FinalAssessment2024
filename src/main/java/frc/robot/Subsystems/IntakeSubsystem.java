@@ -39,7 +39,7 @@ public class IntakeSubsystem extends SubsystemBase{
         intakeMotorTwo.setIdleMode(CANSparkMax.IdleMode.kBrake);
     }
 
-    // 
+    // Getting info on the first Intake Motor
     public IntakeInfo getIntakeMotorOneInfo() {
         IntakeInfo one = new IntakeInfo();
         RelativeEncoder encoderOne = intakeMotorOne.getEncoder();
@@ -48,6 +48,7 @@ public class IntakeSubsystem extends SubsystemBase{
         return one;
     }
 
+    // Getting info on the second Intake Motor
     public IntakeInfo getIntakeMotorTwoInfo() {
         IntakeInfo two = new IntakeInfo();
         RelativeEncoder encoderTwo = intakeMotorTwo.getEncoder();
@@ -56,8 +57,10 @@ public class IntakeSubsystem extends SubsystemBase{
         return two;
     }
 
+    // Uploading all the info into smartdashboard
     @Override
     public void periodic() {
+        // Calculating the motor voltage
         double appliedOutputOne = intakeMotorOne.getAppliedOutput();
         double busVoltageOne = intakeMotorOne.getBusVoltage();
         double motorVoltageOne = appliedOutputOne * busVoltageOne;
@@ -65,8 +68,10 @@ public class IntakeSubsystem extends SubsystemBase{
         double busVoltageTwo = intakeMotorTwo.getBusVoltage();
         double motorVoltageTwo = appliedOutputTwo * busVoltageTwo;
 
+        // Find the encoders
         RelativeEncoder encoderOne = intakeMotorOne.getEncoder();
         RelativeEncoder encoderTwo = intakeMotorTwo.getEncoder();
+        // Getting the position of the motor
         Double posOne = encoderOne.getPosition();
         Double posTwo = encoderTwo.getPosition();
 
