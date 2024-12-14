@@ -24,18 +24,21 @@ import frc.robot.subsystems.wrist.SetWristToSetpoint;
 import frc.robot.subsystems.wrist.WristSubsystem;
 
 public class RobotContainer {
-  private CommandXboxController driverJoystick = new CommandXboxController(Constants.driveJoystickPort);
-  private CommandXboxController operatorJoystick = new CommandXboxController(Constants.operatorJoystickPort);
-  private WristSubsystem wristSubsystem = new WristSubsystem();
-  private IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-  private ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-  private HangerSubsystem hangerSubsystem = new HangerSubsystem();
-  private DrivebaseSubsytem drivebaseSubsytem = new DrivebaseSubsytem();
-  private RunHanger runHanger = new RunHanger(operatorJoystick, hangerSubsystem);
-  private RunIntake runIntake = new RunIntake(intakeSubsystem, operatorJoystick);
-  private RunShooter runShooter = new RunShooter(shooterSubsystem, operatorJoystick);
-  private RunWrist runWrist = new RunWrist(operatorJoystick, wristSubsystem);
-  private JoystickSwerveDrive joystickSwerveDrive = new JoystickSwerveDrive(driverJoystick, drivebaseSubsytem);
+  private final CommandXboxController driverJoystick = new CommandXboxController(Constants.driveJoystickPort);
+  private final CommandXboxController operatorJoystick = new CommandXboxController(Constants.operatorJoystickPort);
+  private final WristSubsystem wristSubsystem = new WristSubsystem();
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  private final HangerSubsystem hangerSubsystem = new HangerSubsystem();
+  private final DrivebaseSubsytem drivebaseSubsytem = new DrivebaseSubsytem();
+  private final RunHanger runHanger = new RunHanger(operatorJoystick, hangerSubsystem);
+  private final RunIntake runIntake = new RunIntake(intakeSubsystem, operatorJoystick);
+  private final RunShooter runShooter = new RunShooter(shooterSubsystem, operatorJoystick);
+  private final RunWrist runWrist = new RunWrist(operatorJoystick, wristSubsystem);
+  private final JoystickSwerveDrive joystickSwerveDrive = new JoystickSwerveDrive(driverJoystick, drivebaseSubsytem);
+  private final PathPlannerAuto shootingAuto = new PathPlannerAuto("ShootingAuto");
+  private final PathPlannerAuto IntakeAndHangerAuto = new PathPlannerAuto("IntakeAndHangerAuto");
+  private final PathPlannerAuto hangerAuto = new PathPlannerAuto("HangerAuto");
   
 
   public RobotContainer() {
