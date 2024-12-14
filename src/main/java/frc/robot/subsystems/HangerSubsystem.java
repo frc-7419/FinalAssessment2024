@@ -6,32 +6,35 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class HangerSubsystem extends SubsystemBase {
-    private final TalonFX hangerMotor;
 
-    public HangerSubsystem() {
-        hangerMotor = new TalonFX(7);
-        hangerMotor.setInverted(true);
-    }
+  private final TalonFX hangerMotor;
 
-    public void setSpeed(double speed) {
-        hangerMotor.set(speed);
-    }
+  public HangerSubsystem() {
+    hangerMotor = new TalonFX(7);
+    hangerMotor.setInverted(true);
+  }
 
-    public void brake() {
-        hangerMotor.setNeutralMode(NeutralModeValue.Brake);
-    }
+  public void setSpeed(double speed) {
+    hangerMotor.set(speed);
+  }
 
-    public void coast() {
-        hangerMotor.setNeutralMode(NeutralModeValue.Coast);
-    }
+  public void brake() {
+    hangerMotor.setNeutralMode(NeutralModeValue.Brake);
+  }
 
-    @Override
-    public void periodic() {
-        SmartDashboard.putNumber("Hanger Motor Temp", hangerMotor.getDeviceTemp().getValueAsDouble());
-    }
+  public void coast() {
+    hangerMotor.setNeutralMode(NeutralModeValue.Coast);
+  }
+
+  @Override
+  public void periodic() {
+    SmartDashboard.putNumber(
+      "Hanger Motor Temp",
+      hangerMotor.getDeviceTemp().getValueAsDouble()
+    );
+  }
 }
