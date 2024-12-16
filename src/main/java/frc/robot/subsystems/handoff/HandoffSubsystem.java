@@ -43,5 +43,7 @@ public class HandoffSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Handoff top motor speed", topMotor.get());
     SmartDashboard.putNumber("Handoff bottom motor speed", bottomMotor.get());
+    SmartDashboard.putNumber("Handoff top motor temperature", topMotor.getMotorTemperature());
+    SmartDashboard.putNumber("Handoff bottom motor temperature", bottomMotor.getMotorTemperature());
   }
 }
